@@ -1,0 +1,294 @@
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Model Factories
+|--------------------------------------------------------------------------
+|
+| Here you may define all of your model factories. Model factories give
+| you a convenient way to create models for testing and seeding your
+| database. Just tell the factory how a default model should look.
+|
+*/
+
+
+
+
+/*--------------------------------------------------------------------------
+| Country Factory
+|-----------------------------------------------------------------------*/
+    $factory->define(App\Models\Country::class, function (Faker\Generator $faker) {
+        return [
+            'name'          => $faker->country,
+            'user_control'  => 'seeder',
+        ];
+    });
+
+/*--------------------------------------------------------------------------
+| City Factory
+|-----------------------------------------------------------------------*/
+    $factory->define(App\Models\City::class, function (Faker\Generator $faker) {
+        return [
+            'name'          => $faker->city,
+            'user_control'  => 'seeder',
+        ];
+    });
+
+
+/*--------------------------------------------------------------------------
+| Role Factory
+|-----------------------------------------------------------------------*/
+    $factory->defineAs(App\Models\Role::class, 'admin', function (Faker\Generator $faker) {
+
+        return [
+            'name'          => 'admin',
+            'user_control'  => 'seeder',
+        ];
+    });
+
+    $factory->defineAs(App\Models\Role::class, 'visitor', function (Faker\Generator $faker) {
+
+        return [
+            'name'          => 'visitor',
+            'user_control'  => 'seeder',
+        ];
+    });
+/*--------------------------------------------------------------------------
+| User Factory
+|-----------------------------------------------------------------------*/
+    $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
+
+        $max_id_city = \App\models\City::max('id');
+
+        $simulaRut_1    = strval( rand(11111111, 19999999) );
+        $simulaRut_2    = strval( rand(0, 9) );
+        $simulaRut      = $simulaRut_1."-".$simulaRut_2;
+
+        return [
+            'identifier'        => $simulaRut,
+            'first_name'         => $faker->firstName,
+            'last_name'         => $faker->lastName,
+            'city_id'           => rand(1, $max_id_city),
+            'user_control'      => 'seeder',
+            'email'             => $faker->safeEmail,
+            'password'          => bcrypt('secret'),
+            'remember_token'    => str_random(10),
+            'active'            => 1,
+        ];
+    });
+/*--------------------------------------------------------------------------
+| Activity Factory
+|-----------------------------------------------------------------------*/
+    $factory->define(\App\Models\Activity::class, function (Faker\Generator $faker){
+
+        return [
+            'name'          => $faker->word,
+            'user_control'  => 'seeder',
+        ];
+
+    });
+
+/*--------------------------------------------------------------------------
+| Company Factory
+|-----------------------------------------------------------------------*/
+    $factory->define(App\Models\Company::class, function (Faker\Generator $faker) {
+
+    $max_activity_id = \App\models\Activity::max('id');
+
+    $simulaRut_1    = strval( rand(71111111, 79999999) );
+    $simulaRut_2    = strval( rand(0, 9) );
+    $simulaRut      = $simulaRut_1."-".$simulaRut_2;
+
+    return [
+        'name'              => $faker->company,
+        'identifier'        => $simulaRut,
+        'activity_id'       => rand(1, $max_activity_id),
+
+        'user_control'      => 'seeder',
+    ];
+    });
+
+/*--------------------------------------------------------------------------
+| Supplier Factory
+|-----------------------------------------------------------------------*/
+    $factory->define(\App\Models\Supplier::class, function (Faker\Generator $faker){
+
+        $max_company_id = \App\models\Company::max('id');
+        $max_id_city    = \App\models\City::max('id');
+
+        return [
+            'company_id'    => rand(1, $max_company_id),
+            'city_id'       => rand(1, $max_id_city),
+            'name'          => $faker->name,
+            'description'   => $faker->paragraph,
+
+            'user_control'  => 'seeder',
+        ];
+
+    });
+/*--------------------------------------------------------------------------
+| Currency Factory
+|-----------------------------------------------------------------------*/
+    $factory->defineAs(\App\Models\Currency::class,'clp', function (Faker\Generator $faker){
+
+        return [
+            'name'          => 'CLP',
+            'user_control'  => 'seeder',
+        ];
+    });
+/*--------------------------------------------------------------------------
+| PayMetod Factory
+|-----------------------------------------------------------------------*/
+    $factory->defineAs(\App\Models\PayMetod::class,'Contado', function (Faker\Generator $faker){
+
+        return [
+            'name'          => 'Contado',
+            'user_control'  => 'seeder',
+        ];
+
+    });
+    $factory->defineAs(\App\Models\PayMetod::class,'30', function (Faker\Generator $faker){
+
+        return [
+            'name'          => '30 días',
+            'user_control'  => 'seeder',
+        ];
+
+    });
+
+/*--------------------------------------------------------------------------
+| Position Factory
+|-----------------------------------------------------------------------*/
+    $factory->define(\App\Models\Position::class, function (Faker\Generator $faker){
+
+        $max_level_id       = \App\models\LevelPositions::max('id');
+        $max_department_id  = \App\models\Departments::max('id');
+
+        return [
+            'name'          => $faker->jobTitle,
+            'levelPositions_id'      => rand(1, $max_level_id),
+            'department_id'          => rand(1, $max_department_id),
+            //'active'        => 1,
+
+            'user_control'  => 'seeder',
+        ];
+
+    });
+
+
+/*--------------------------------------------------------------------------
+| StateAsset Factory
+|-----------------------------------------------------------------------*/
+    $factory->defineAs(\App\Models\StateAsset::class,'nuevo', function (Faker\Generator $faker){
+
+        return [
+            'name'          => 'nuevo',
+            'user_control'  => 'seeder',
+        ];
+    });
+
+    $factory->defineAs(\App\Models\StateAsset::class,'usado', function (Faker\Generator $faker){
+
+        return [
+            'name'          => 'usado',
+            'user_control'  => 'seeder',
+        ];
+
+    });
+/*--------------------------------------------------------------------------
+| Asset Factory
+|-----------------------------------------------------------------------*/
+    $factory->define(\App\Models\Asset::class, function (Faker\Generator $faker){
+
+        $max_supplier_id        = \App\models\Supplier::max('id');
+        $max_purchases_asset_id = \App\models\Purchase::max('id');
+        $max_state_asset_id     = \App\models\StateAsset::max('id');
+
+        $max_category_id        = \App\models\Category::max('id');
+
+
+
+        return [
+            'name'              => $faker->domainName,
+            'description'       => $faker->paragraph,
+            'code'              => $faker->postcode,
+            'price'             => $faker->numberBetween(1000, 100000),
+            'supplier_id'       => rand(1, $max_supplier_id),
+            'state_asset_id'    => rand(1, $max_state_asset_id),
+            'category_id'       => rand(1, $max_category_id),
+            'purchase_id'       => rand(1, $max_purchases_asset_id),
+            'available'         => rand(0,1),
+
+            'user_control'  => 'seeder',
+        ];
+
+    });
+/*--------------------------------------------------------------------------
+| StateAssignment Factory
+|-----------------------------------------------------------------------*/
+    $factory->defineAs(\App\Models\StateAssignment::class,'prestamo', function (Faker\Generator $faker){
+        return [
+            'name'          => 'En prestamo',
+            'user_control'  => 'seeder',
+        ];
+    });
+
+    $factory->defineAs(\App\Models\StateAssignment::class,'entregado', function (Faker\Generator $faker){
+        return [
+            'name'          => 'Entregado',
+            'user_control'  => 'seeder',
+        ];
+    });
+
+    $factory->defineAs(\App\Models\StateAssignment::class,'mantencion', function (Faker\Generator $faker){
+        return [
+            'name'          => 'En mantención',
+            'user_control'  => 'seeder',
+        ];
+    });
+
+    $factory->defineAs(\App\Models\StateAssignment::class,'perdido', function (Faker\Generator $faker){
+        return [
+            'name'          => 'Perdido',
+            'user_control'  => 'seeder',
+        ];
+    });
+/*--------------------------------------------------------------------------
+| Office Factory
+|-----------------------------------------------------------------------*/
+    $factory->define(\App\Models\Office::class, function (Faker\Generator $faker){
+        $max_cities_id     = \App\models\City::max('id');
+
+        return [
+            'name'          => $faker->address,
+            'description'   => $faker->paragraph,
+            'city_id'       => rand(1, $max_cities_id),
+            'user_control'  => 'seeder',
+        ];
+    });
+/*--------------------------------------------------------------------------
+| Purchase Factory
+|-----------------------------------------------------------------------*/
+    $factory->define(\App\Models\Purchase::class, function (Faker\Generator $faker){
+
+        $unit_price = rand(1111,9999);
+        return [
+            'date'              => $faker->dateTime,
+            'quantity'          => 1,
+            'unit_price'        => $unit_price,
+            'total'             => $unit_price,
+
+            'user_control'  => 'seeder',
+        ];
+
+    });
+
+
+
+
+
+
+
+
+
+
