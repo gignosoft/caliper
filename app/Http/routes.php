@@ -226,6 +226,19 @@ Route::group(['middleware' => ['web']], function () {
 
         Route::post('/ingresarDepartamento',  'Mantenedores\MantenedorDeDepartamentos@store');
 
+      /*|--------------------------------------------------------------------------
+      | MANTENEDOR DE CATEGORIAS
+      |------------------------------------------------------------------------*/
+
+        /* list */
+        Route::get('/listarCategorias',
+            'Mantenedores\MantenedorDeCategorias@index')
+            ->name('listarCategorias');
+
+        Route::post('/listarCategorias',
+            'Mantenedores\MantenedorDeCategorias@search')
+            ->name('listarCategorias');
+
 
         /*//FIN
         |--------------------------------------------------------------------------
@@ -271,3 +284,10 @@ Route::get('/ingresarCompraIndex', function () {
 // ingresar compra <<
 
 /*******************************/
+
+
+
+
+
+
+
