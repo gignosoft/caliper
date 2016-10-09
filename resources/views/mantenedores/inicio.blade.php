@@ -13,6 +13,7 @@
         <li><a href="{{ route('listarCargo') }}">Mantenedor de cargos</a></li>
         <li><a href="{{ route('listarNivelCargo') }}">Mantenedor de niveles de cargos</a></li>
         <li><a href="{{ route('listarUsuario') }}">Mantenedor de usuarios</a></li>
+        <li><a href="{{ route('listarCategorias') }}">Mantenedor de categorias</a></li>
 
 
 
