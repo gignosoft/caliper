@@ -2,10 +2,6 @@
 
 namespace App\Http\Controllers\Mantenedores;
 
-use App\Models\Departments;
-use App\Models\LevelPositions;
-use App\Models\User;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
@@ -14,29 +10,123 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Models\Position;
+use App\Models\Departments;
+use App\Models\LevelPositions;
 
 class MantenedorDeCargos extends Controller
 {
     private $datosPorPagina = 5;
 
-    public function listarTodos()
+
+
+    public function index()
     {
-        $cargos     = Position::paginate($this->datosPorPagina);
-        $numCargos  = count($cargos);
-        return view('mantenedores/listarCargo', array('cargos' => $cargos, 'numCargos' => $numCargos));
+        $cargos         = Position::paginate($this->datosPorPagina);
+        $niveles        = LevelPositions::all();
+        $departamentos  = Departments::all();
+
+        return view('mantenedores.positions.listar', [
+            'cargos'        => $cargos,
+            'niveles'       => $niveles,
+            'departamentos' => $departamentos,
+            'buscar'        => 'false',
+        ]);
     }
 
-    public function buscarCargo()
-    {
-        $nombre = $_POST['nombre'];
-        $cargos = Position::where('name', 'LIKE', '%' . $nombre . '%')->paginate($this->datosPorPagina);
-        
-        
 
-        $numCargos = count($cargos);
-        return view('mantenedores/listarCargo', array('cargos' => $cargos, 'numCargos' => $numCargos));
+    public function search()
+    {
+        //dd($_POST);
+        $name                   = $_POST['name'];
+        $levelpositions_id      = $_POST['levelpositions_id'];
+        $department_id          = $_POST['department_id'];
+
+        if( $name == '' && $levelpositions_id == '' && $department_id == '')
+        {
+            return redirect('listarCargo');
+        }
+
+        $ope_levelpositions_id = '=';
+        $ope_department_id     = '=';
+
+        if($levelpositions_id == '')
+        {
+            $levelpositions_id       = '%'.$levelpositions_id.'%';
+            $ope_levelpositions_id   = 'like';
+        }
+
+        if($department_id == '')
+        {
+            $department_id       = '%'.$department_id.'%';
+            $ope_department_id   = 'like';
+        }
+
+        $cargos = Position::where( 'name',  'like', '%'.$name.'%' )
+                         ->Where ( 'levelpositions_id', $ope_levelpositions_id, $levelpositions_id )
+                         ->Where ( 'department_id', $ope_department_id, $department_id )
+                         ->get();
+        $niveles        = LevelPositions::all();
+        $departamentos  = Departments::all();
+
+        return view('mantenedores.positions.listar', [
+            'cargos'        => $cargos,
+            'niveles'       => $niveles,
+            'departamentos' => $departamentos,
+            'buscar'        => 'true',
+        ]);
+
     }
 
+
+    public function create()
+    {
+        $niveles        = LevelPositions::all();
+        $departamentos  = Departments::all();
+
+        return view('mantenedores.positions.insertar',[
+            'niveles'       => $niveles,
+            'departamentos' => $departamentos,
+        ]);
+    }
+
+
+    public function store(Request $request)
+    {
+        //dd($_POST);
+        $name                   = $_POST['name'];
+        $levelpositions_id      = $_POST['levelpositions_id'];
+        $department_id          = $_POST['department_id'];
+
+        $validator = Validator::make($request->all(), [
+            'name'          => 'required',
+        ], $messages = [
+            'name.required' => trans( 'mant_cargos.msj_name_required' ),
+        ]);
+
+        if ($validator->fails()) {
+
+            return redirect('ingresarCargo')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        // fin validaciones
+
+
+        $cargo = new Position();
+        $cargo->name                = $name;
+        $cargo->LevelPositions_id   = $levelpositions_id;
+        $cargo->department_id       = $department_id;
+        $cargo->user_control        = $request->user()->identifier;
+
+        $cargo->save();
+
+        $request->session()
+            ->flash('alert-success',
+                trans( 'mant_cargos.msj_insert_ok' )
+            );
+
+        return Redirect::to('ingresarCargo');
+    }
 
     public function actualizar($id)
     {
@@ -46,7 +136,7 @@ class MantenedorDeCargos extends Controller
         $niveles        = LevelPositions::all();
         $departments    = Departments::all();
 
-        return view('mantenedores/actualizarCargo',
+        return view('mantenedores.positions.actualizar',
             [
                 'cargo'         => $cargo,
                 'niveles'       => $niveles,
@@ -54,99 +144,43 @@ class MantenedorDeCargos extends Controller
             ]);
     }
 
-    public function accionActualizar(Request $request, $id)
+    public function accionActualizar(Request $request)
     {
         //dd($_POST);
-        $mensaje_de_vacio = ", estaba vacío.";
+
+        $id                 = $_POST['id'];
+        $name               = $_POST['name'];
+        $levelpositions_id  = $_POST['LevelPositions_id'];
+        $department_id      = $_POST['department_id'];
+
 
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'LevelPositions_id' => 'required',
-            'department_id' => 'required',
+            'name'          => 'required',
         ], $messages = [
-            'name.required' => 'El campo Nombre ' . $mensaje_de_vacio,
-            'LevelPositions_id.required' => 'El campo Nivel ' . $mensaje_de_vacio,
-            'department_id.required' => 'El campo departamento ' . $mensaje_de_vacio, //reparar mensajes
+            'name.required' => trans( 'mant_cargos.msj_name_required' ),
         ]);
 
         if ($validator->fails()) {
 
-            return redirect('actualizarCargo/' . $id . '')
+            return redirect('actualizarCargo/'.$id)
                 ->withErrors($validator)
                 ->withInput();
         }
+        // fin validaciones
 
-        $name               = $_POST['name'];
-        $LevelPositions_id  = $_POST['LevelPositions_id'];
-        $department_id      = $_POST['department_id'];
 
         $cargo = Position::find($id);
-        $cargo->name = $name;
-        $cargo->department_id = $department_id;
-        $cargo->LevelPositions_id = $LevelPositions_id;
+        $cargo->name                = $name;
+        $cargo->LevelPositions_id   = $levelpositions_id;
+        $cargo->department_id       = $department_id;
+        $cargo->user_control        = $request->user()->identifier;
 
         $cargo->save();
 
-        // dd($cargo->name);
-
-        $request->session()->flash('alert-success', 'El Cargo ha sido correctamente actualizado.');
+        $request->session()->flash('alert-success',
+            'El Cargo ha sido correctamente actualizado.');
         return Redirect::to('actualizarCargo/' . $id);
-    }
 
-
-    public function ingresar()
-    {
-        $niveles        = LevelPositions::all();
-
-        $departamentos  = Departments::all();
-        return view('mantenedores/ingresarCargo', [
-            'niveles'       => $niveles,
-            'departamentos' => $departamentos,
-
-        ]);
-    }
-
-    public function accionIngresar(Request $request)
-    {
-        //dd($_POST);
-        $name               = $_POST['name'];
-        $LevelPositions_id  = $_POST['levelPositions_id'];
-        $department_id      = $_POST['department_id'];
-
-        if (isset($LevelPositions_id)) {
-            $mensaje_de_vacio = ", estaba vacío.";
-
-            $validator = Validator::make($request->all(), [
-                'name'              => 'required',
-                'levelPositions_id' => 'required',
-                'department_id'     => 'required',
-            ], $messages = [
-                'name.required'                 => 'El campo Nombre ' . $mensaje_de_vacio,
-                'levelPositions_id.required'    => 'Seleccione un nivel ',
-                'department_id.required'        => 'Seleccione un departamento ',
-            ]);
-
-            if ($validator->fails()) {
-
-                return redirect('ingresarCargo')
-                    ->withErrors($validator)
-                    ->withInput();
-            }
-            // fin validaciones
-
-
-            $cargo = new Position();
-            $cargo->name                = $name;
-            $cargo->LevelPositions_id   = $LevelPositions_id;
-            $cargo->department_id       = $department_id;
-
-            $cargo->save();
-
-            $request->session()->flash('alert-success', 'El cargo ha sido correctamente ingresado.');
-            return Redirect::to('ingresarCargo');
-
-
-        }
 
     }
 

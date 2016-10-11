@@ -126,59 +126,98 @@ Route::group(['middleware' => ['web']], function () {
             ->name('verActivo');
 
 
-        /**********************************/
-        /** MANTENEDOR DE CARGOS        **/
-        /********************************/
+        /*|--------------------------------------------------------------------------
+        | MANTENEDOR DE CARGOS
+        |------------------------------------------------------------------------*/
 
         /* list */
-        Route::get('/listarCargo',    'Mantenedores\MantenedorDeCargos@listarTodos')->name('listarCargo');
-        Route::post('/listarCargo',   'Mantenedores\MantenedorDeCargos@buscarCargo');
+        Route::get('/listarCargo',
+            'Mantenedores\MantenedorDeCargos@index')
+            ->name('listarCargo');
 
-        /* update */
-        Route::get('actualizarCargo/{id}',    'Mantenedores\MantenedorDeCargos@actualizar')->name('actualizarCargo');
-        Route::post('actualizarCargo/{id}',   'Mantenedores\MantenedorDeCargos@accionActualizar')->name('actualizarCargo');
+        Route::post('/listarCargo',
+            'Mantenedores\MantenedorDeCargos@search');
 
         /* create */
-        Route::get('/ingresarCargo',  'Mantenedores\MantenedorDeCargos@ingresar')->name('ingresarCargo');
-        Route::post('/ingresarCargo', 'Mantenedores\MantenedorDeCargos@accionIngresar')->name('ingresarCargo');
+        Route::get('ingresarCargo',
+            'Mantenedores\MantenedorDeCargos@create')
+            ->name('ingresarCargo');
+
+        Route::post('ingresarCargo',
+            'Mantenedores\MantenedorDeCargos@store')
+            ->name('ingresarCargo');
+
+        /* update */
+        Route::get('actualizarCargo/{id}',
+            'Mantenedores\MantenedorDeCargos@actualizar')
+            ->name('actualizarCargo');
+
+        Route::post('actualizarCargo',
+            'Mantenedores\MantenedorDeCargos@accionActualizar')
+            ->name('actualizarCargo');
 
         /* ver */
-        Route::get('/verCargo/{id}', 'Mantenedores\MantenedorDeCargos@ver')->name('verCargo');
+        Route::get('/verCargo/{id}',
+            'Mantenedores\MantenedorDeCargos@ver')
+            ->name('verCargo');
 
         /* delete */
-        Route::get('eliminarCargo/{id}', 'Mantenedores\MantenedorDeCargos@eliminar')->name('eliminarCargo');
+        Route::get('eliminarCargo/{id}',
+            'Mantenedores\MantenedorDeCargos@eliminar')
+            ->name('eliminarCargo');
 
-        /**********************************/
+
 
         /*
         |--------------------------------------------------------------------------
         | MANTENEDOR DE NIVELES DE DEPARTAMENTOS
-        |--------------------------------------------------------------------------
+        |-----------------------------------------------------------------------
         *///INICIO
 
         /* list */
-        Route::get('/listarNivelDepartamento',    'Mantenedores\MantenedorDeNivelesDepartamentos@listarTodos')
+        Route::get('/listarNivelDepartamento',
+            'Mantenedores\MantenedorDeNivelesDepartamentos@listarTodos')
             ->name('listarNivelDepartamento');
         
-        Route::post('/listarNivelDepartamento',   'Mantenedores\MantenedorDeNivelesDepartamentos@buscar');
+        Route::post('/listarNivelDepartamento',
+            'Mantenedores\MantenedorDeNivelesDepartamentos@buscar');
 
         /* create */
-        Route::get('/ingresarNivelDepartamento',  'Mantenedores\MantenedorDeNivelesDepartamentos@ingresar')
+        Route::get('/ingresarNivelDepartamento',
+            'Mantenedores\MantenedorDeNivelesDepartamentos@ingresar')
             ->name('ingresarNivelDepartamento');
 
 
         /* delete */
-        Route::get('eliminarNivelDepartamento/{id}', 'Mantenedores\MantenedorDeNivelesDepartamentos@eliminar')
+        Route::get('eliminarNivelDepartamento/{id}',
+            'Mantenedores\MantenedorDeNivelesDepartamentos@eliminar')
             ->name('eliminarNivelDepartamento');
 
         /* ver */
-        Route::get('/verNivelDepartamento/{id}', 'Mantenedores\MantenedorDeNivelesDepartamentos@ver')
+        Route::get('/verNivelDepartamento/{id}',
+            'Mantenedores\MantenedorDeNivelesDepartamentos@ver')
             ->name('verNivelDepartamento');
 
-        /*//FIN
-        |--------------------------------------------------------------------------
-        |--------------------------------------------------------------------------
-        */
+
+
+        /*--------------------------------------------------------------------------
+        | MANTENEDOR DE DEPARTAMENTOS
+        |------------------------------------------------------------------------
+        /* list */
+        Route::get('/listarDepartamentos',
+            'Mantenedores\MantenedorDeDepartamentos@index')
+            ->name('listarDepartamentos');
+
+        Route::post('/listarDepartamentos',
+            'Mantenedores\MantenedorDeDepartamentos@search');
+
+        /* create */
+        Route::get('/ingresarDepartamento',
+            'Mantenedores\MantenedorDeDepartamentos@create')
+            ->name('ingresarDepartamento');
+
+        Route::post('/ingresarDepartamento',
+            'Mantenedores\MantenedorDeDepartamentos@store');
 
         /*
         |--------------------------------------------------------------------------
@@ -210,21 +249,7 @@ Route::group(['middleware' => ['web']], function () {
         */
 
 
-        /*
-        |--------------------------------------------------------------------------
-        | MANTENEDOR DE DEPARTAMENTOS
-        |--------------------------------------------------------------------------
-        *///INICIO
 
-        /* list */
-        Route::get('/listarDepartamentos','Mantenedores\MantenedorDeDepartamentos@index')->name('listarDepartamentos');
-        Route::post('/listarDepartamentos','Mantenedores\MantenedorDeDepartamentos@search');
-
-        /* create */
-        Route::get('/ingresarDepartamento',  'Mantenedores\MantenedorDeDepartamentos@create')
-            ->name('ingresarDepartamento');
-
-        Route::post('/ingresarDepartamento',  'Mantenedores\MantenedorDeDepartamentos@store');
 
       /*|--------------------------------------------------------------------------
       | MANTENEDOR DE CATEGORIAS

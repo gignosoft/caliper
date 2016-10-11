@@ -12,7 +12,7 @@ class Position extends Model
     // | levelPositions | -< | positions | (funciona) |hasMany| -< |belongsTo|
     public function levelPositions()
     {
-        return $this->belongsTo(levelPositions::class, 'levelpositions_id', 'id');
+        return $this->belongsTo(LevelPositions::class, 'levelpositions_id', 'id');
     }
 
 

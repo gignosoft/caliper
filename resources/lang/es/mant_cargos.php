@@ -2,17 +2,11 @@
 
 /*
 |--------------------------------------------------------------------------
-| CAMPOS QUE ESTAN EN LA TABLA USERS
+| CAMPOS QUE ESTAN EN LA TABLA POSITIONS
 |--------------------------------------------------------------------------
-|   identifier  : Este campo guarda el rut completo (11111111-1).
-|   first_name  : Este campo guarda el nombre o los nombres.
-|   last_name   : Este campo guarda el apellido o los apellidos.
-|   email       : Este campo guarda el correo electónico.
-|   password    : Este campo guarda la contraseña.
-|   city_id     : Este campo guarda el id de la tabla cities.
-|   active      : Este campo indica si el usuario esta activo: 1 o si está inactivo: 0.
-|   city_id     : Este campo guarda el id de la tabla cities.
-|
+|   name                : Este campo guarda nombre.
+|   department_id       : Este campo guarda el id del departamento.
+|   levelpositions_id   : Este campo guarda el nivel de la posicion.
 |
 */
 
@@ -37,7 +31,43 @@
 |
 */
 
-// {{ trans( 'mantCargos.xxxxxxxxx' ) }}
+// {{ trans( 'mant_cargos.xxxxxxxxx' ) }}
+
+return[
+    'tit_listar'        => 'Mantenedor de cargos',
+    'tit_insertar'      => 'Ingresar nuevo cargo',
+    'tit_actualizar'    => 'Actualizar cargo',
+
+    'th_name'					    => 'Nombre',
+    'th_level_id'					=> 'Nivel',
+    'th_department_id'			    => 'Departamento',
+    'th_action'			            => 'Acción',
+
+    'l_name'					    => 'Nombre',
+    'l_nivel'					    => 'Nivel',
+    'l_departamento'			    => 'Departamento',
+
+    'ph_name'					    => 'Ingrese nombre',
+
+    'btn_buscar'					=> 'Buscar',
+    'btn_nuevo'						=> 'Nuevo',
+    'btn_salir'						=> 'Salir',
+    'btn_volver'					=> 'Volver',
+    'btn_guardar'					=> 'Guardar',
+
+    'isd_level'                     => 'Todos',
+    'isd_department_id'             => 'Todos',
+
+    'tp_cargos'						=> 'Datos del cargo',
+
+    'msj_no_encontrado'             => 'Sin resultados.',
+    'msj_name_required'             => 'Necesitamos saber el nombre del cargo.',
+    'msj_insert_ok'                 => 'El cargo ha sido ingresado exitosamente.',
+    'msj_update_ok'                 => 'El cargo ha sido actualizado exitosamente.',
+
+
+
+];
 
 
 /*
