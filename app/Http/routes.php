@@ -51,6 +51,14 @@ Route::group(['middleware' => ['web']], function () {
         | MANTENEDOR DE USUARIOS
         |------------------------------------------------------------------------*/
 
+        /* list */
+        Route::get('/listarUsuario',
+            'Mantenedores\MantenedorDeUsuarios@listarTodos')
+            ->name('listarUsuario');
+
+        Route::post('/listarUsuario',
+            'Mantenedores\MantenedorDeUsuarios@buscarUsuario');
+
         /* create */
         Route::get('/ingresarUsuario',
             'Mantenedores\MantenedorDeUsuarios@ingresarUsuario')
@@ -77,15 +85,6 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('eliminarUsuario/{id}',
             'Mantenedores\MantenedorDeUsuarios@eliminarUsuario')
             ->name('eliminarUsuario');
-
-        /* list */
-        Route::get('/listarUsuario',
-            'Mantenedores\MantenedorDeUsuarios@listarTodos')
-            ->name('listarUsuario');
-
-        Route::post('/listarUsuario',
-            'Mantenedores\MantenedorDeUsuarios@buscarUsuario');
-
 
         /* ver */
         Route::get('/verUsuario/{id}',
@@ -166,8 +165,6 @@ Route::group(['middleware' => ['web']], function () {
             'Mantenedores\MantenedorDeCargos@eliminar')
             ->name('eliminarCargo');
 
-
-
         /*
         |--------------------------------------------------------------------------
         | MANTENEDOR DE NIVELES DE DEPARTAMENTOS
@@ -218,6 +215,25 @@ Route::group(['middleware' => ['web']], function () {
 
         Route::post('/ingresarDepartamento',
             'Mantenedores\MantenedorDeDepartamentos@store');
+
+        /* update */
+        Route::get('actualizarDepartamento/{id}',
+            'Mantenedores\MantenedorDeDepartamentos@edit')
+            ->name('actualizarDepartamento');
+
+        Route::post('actualizarDepartamento',
+            'Mantenedores\MantenedorDeDepartamentos@update')
+            ->name('actualizarDepartamento');
+
+        /* ver */
+        Route::get('verDepartamento/{id}',
+            'Mantenedores\MantenedorDeDepartamentos@show')
+            ->name('verDepartamento');
+
+        /* eliminar */
+        Route::get('eliminarDepartamento/{id}',
+            'Mantenedores\MantenedorDeDepartamentos@show')
+            ->name('verDepartamento');
 
         /*
         |--------------------------------------------------------------------------

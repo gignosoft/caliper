@@ -10,9 +10,13 @@
 
     <ul>
 
-
         <li><a href="{{ route('listarUsuario') }}                   ">Mantenedor de usuarios                </a></li>
-        <li><a href="{{ route('listarCategorias') }}                ">Mantenedor de categorias              </a></li>
+        <li>Activos
+            <ul>
+                <li><a href="{{ route('listarActivo') }}            ">Mantenedor de activos                </a></li>
+                <li><a href="{{ route('listarCategorias') }}        ">Mantenedor de categorias              </a></li>
+            </ul>
+        </li>
         <li>Cargos
             <ul>
                 <li><a href="{{ route('listarCargo') }}             ">Mantenedor de cargos                  </a></li>
@@ -21,7 +25,7 @@
         </li>
         <li>Departamentos
             <ul>
-                <li><a href="{{ route('listarNivelDepartamento') }} ">Mantenedor de departamentos           </a></li>
+                <li><a href="{{ route('listarDepartamentos') }} ">Mantenedor de departamentos           </a></li>
                 <li><a href="{{ route('listarNivelDepartamento') }} ">Mantenedor de niveles de departamentos</a></li>
             </ul>
         </li>

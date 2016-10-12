@@ -16,7 +16,7 @@
 <!-- fin botón nuevo -->
 
 <!-- botón salir -->
-@section('url_btn_salir')   {{ url('#') }}                              @endsection
+@section('url_btn_salir')   {{ url('mantenedores') }}                              @endsection
 @section('value_btn_salir') {{ trans('mant_departamentos.btn_salir') }} @endsection
 <!-- fin botón salir  -->
 
@@ -64,23 +64,30 @@
                 <td>{{ $department->name                    }}</td>
                 <td>{{ $department->levelDepartments->level }}</td>
 
-                <td><a class="iconos" href="{{ url('actualizarUsuario/'.$department->id) }}"
+                <td><a class="iconos" href="{{ url('actualizarDepartamento/'.$department->id) }}"
                        data-toggle="tooltip"
                        title="{{ trans('mant_departamentos.tt_Editar')}}" >
                         <img src="{{ url('img/ic_edit_black_18dp_1x.png') }}"/>
                     </a> |
 
-                    <a class="iconos" href="{{ url('verUsuario/'.$department->id) }}"
+                    <a class="iconos" href="{{ url('verDepartamento/'.$department->id) }}"
                        data-toggle="tooltip"
                        title="{{ trans('mant_departamentos.tt_ver_mas')}}" >
                         <img src="{{ url('img/ic_visibility_black_18dp_1x.png') }}"/>
                     </a> |
                     <a class="iconos"
-                       href="javascript:confirmarEliminar(
-                               '{{ url('eliminarUsuario/'.$department->id) }}',
+                       @if( count( $department->positions ) == 0 )
+                            href="javascript:confirmarEliminar(
+                               '{{ url('eliminarDepartamento/'.$department->id) }}',
                                '{{ $department->name }}',
-                               '{{ trans('mant_departamentos.jal_confirm_elmnar_user')}}'
+                               '{{ trans('mant_departamentos.jal_confirm_elmnar')}}'
                                )"
+                       @else
+                            href="javascript:alert('{{ trans('mant_departamentos.jal_no_se_puede_elmnar') }}')"
+                       @endif
+
+
+
                        data-toggle="tooltip"
                        title="{{ trans('mant_departamentos.tt_Eliminar')}}">
                         <img src="{{ url('img/ic_close_black_18dp_1x.png') }}"/>

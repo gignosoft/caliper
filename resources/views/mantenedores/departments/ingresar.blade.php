@@ -43,7 +43,7 @@
                                 <select class="form-control" name="levelDepartments_id" id="levelDepartments_id"  >
                                     <option value="" >{{ trans('mant_departamentos.isd_level2') }}</option>
                                     @foreach( $niveles as $nivel )
-                                        <option value="{{ $nivel->id }}">{{ $nivel->id }}</option>
+                                        <option value="{{ $nivel->id }}">{{ $nivel->level }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -58,7 +58,9 @@
             <!--botones-->
             <div class="row col-sm-12 padding col-xs-12  margenes-botones">
                 <input type="submit" class="btn btn-primary " value="{{ trans('mant_departamentos.btn_guardar') }}">                &nbsp;
-                <input type="button" class="btn btn-primary " onclick='window.location ="{{ route("listarDepartamentos") }}"' value="{{ trans('mant_departamentos.btn_volver') }}">
+                <input type="button" class="btn btn-primary "
+                       onclick='window.location ="{{ route("listarDepartamentos") }}"'
+                       value="{{ trans('mant_departamentos.btn_volver') }}">
             </div>
             <div class="row"> </div><hr/>
             <!-- fin botones-->

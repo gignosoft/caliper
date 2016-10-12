@@ -10,6 +10,11 @@ class Asset extends Model
     protected $table = 'assets';
 
 
+    // | categories | >- | assets |
+    public function categories()
+    {
+        return $this->belongsTo(Category::class,'category_id', 'id');
+    }
 
     // | suppliers | -< | assets |
     public function suppliers()
@@ -35,6 +40,8 @@ class Asset extends Model
     {
         return $this->hasMany(Assignment::class,'asset_id', 'id');
     }
+
+
 
 
 

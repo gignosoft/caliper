@@ -64,6 +64,20 @@
                             </select>
                         </div>
 
+                        <div class="form-group col-sm-12 col-xs-12 pegado-izquierda">
+                            <label for="category_id">{{ trans('mantActivos.l_category_id') }}</label>
+                            <select class="form-control" name="category_id" id="category_id">
+                                @foreach( $categorias as $categoria )
+                                    @if( $categoria->id == $activo->category_id )
+                                        <option selected value="{{ $categoria->id }}">{{ $categoria->name }}</option>
+                                    @else
+                                        <option value="{{ $categoria->id }}">{{ $categoria->name }}</option>
+                                    @endif
+
+                                @endforeach
+                            </select>
+                        </div>
+
                         <!--botones-->
                             &nbsp;
                             <input type="submit" class="btn btn-primary "

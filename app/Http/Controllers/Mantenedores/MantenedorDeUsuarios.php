@@ -192,8 +192,9 @@ class MantenedorDeUsuarios extends Controller
     }
     public function restablecerContrasenia($id, Request $request)
     {
-        $usuario = User::find($id);
-        $usuario->password = bcrypt('secret');
+        $usuario 				= User::find($id);
+        $usuario->password 		= bcrypt('secret');
+        $usuario->user_control  = $request->user()->identifier;
         $usuario->save();
         $request->session()->flash( 'alert-success', trans( 'mantusuarios.msj_reset_pass_ok' ) );
         return Redirect::to('actualizarUsuario/'.$id);
@@ -203,7 +204,7 @@ class MantenedorDeUsuarios extends Controller
     /*-------------------------------------------------------------------------
     | INSERTAR
     |----------------------------------------------------------------------*/
-    
+
     public function ingresarUsuario()
     {
         $paises = Country::All();
@@ -223,7 +224,7 @@ class MantenedorDeUsuarios extends Controller
 
 
     public function cargaCiudadUsuario($id)
-    {    
+    {
         $ciudades = City::where('country_id', '=', $id)->get();
         return view('mantenedores/trozosHtml/dinamicCiudades', ['ciudades' => $ciudades]);
     }
@@ -289,16 +290,16 @@ class MantenedorDeUsuarios extends Controller
                     ->withErrors($validator)
                     ->withInput();
             }
-        }  
-        
+        }
+
         if (!$this->valida_rut($identifier)) {
 
             return redirect('ingresarUsuario')
                 ->withErrors( trans('mantusuarios.msj_identifier_invalid') );
-        }       
+        }
 
         // fin validaciones
-        
+
         $user = new User();
         $user->identifier       = $identifier;
         $user->first_name       = $first_name;
@@ -339,12 +340,15 @@ class MantenedorDeUsuarios extends Controller
     | ELIMINAR
     |----------------------------------------------------------------------*/
     public function eliminarUsuario($id, Request $request)
-    {      
-        
+    {
+
         $usuario = User::find($id);
         $mensaje    = trans( 'mantusuarios.msj_eliminado_1').$usuario->first_name.trans( 'mantusuarios.msj_eliminado_2');
-        
-        $usuario->active = 0;
+
+        $usuario->active        = 0;
+        $usuario->user_control  = $request->user()->identifier;
+        $usuario->password      = bcrypt( rand(111, 999) );
+
         $usuario->save();
         $request->session()->flash('alert-success', $mensaje);
         return Redirect::to(route('listarUsuario'));

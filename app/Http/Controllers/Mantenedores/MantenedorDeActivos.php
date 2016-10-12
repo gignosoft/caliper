@@ -3,9 +3,12 @@ namespace App\Http\Controllers\Mantenedores;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+
 use App\Models\Asset;
 use App\Models\Supplier;
 use App\Models\StateAsset;
+use App\Models\Category;
+
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
@@ -23,6 +26,7 @@ class MantenedorDeActivos extends Controller
         //
         $activos        = Asset::paginate(5);
         $estados        = StateAsset::all();
+
         return view('mantenedores.assets.listar', [
             'activos'       => $activos,
             'estados'       => $estados,
@@ -31,15 +35,15 @@ class MantenedorDeActivos extends Controller
     }
     public function search()
     {
-        //
-        //dd($_POST);
         $code           = $_POST['code'];
         $name           = $_POST['name'];
         $available      = $_POST['available'];
         $state_asset_id = $_POST['state_asset_id'];
+
         $ope_code           = '=';
         $ope_state_asset_id = '=';
         $ope_available      = '=';
+
         if( $code == '' && $ope_available == '' && $state_asset_id == '' && $name == '')
         {
             return Redirect::to('listarActivo');
@@ -59,14 +63,14 @@ class MantenedorDeActivos extends Controller
             $state_asset_id       = '%'.$state_asset_id.'%';
             $ope_state_asset_id   = 'like';
         }
-        $activos = Asset::where( 'code',     $ope_code          ,    $code              )
-            ->Where ( 'name',                'LIKE'             , '%'.$name.'%'         )
-            ->Where ( 'available',         $ope_available     ,    $available       )
-            ->Where ( 'state_asset_id',      $ope_state_asset_id,    $state_asset_id    )
+        $activos = Asset::where( 'code', $ope_code, $code )
+            ->Where ( 'name', 'LIKE', '%'.$name.'%' )
+            ->Where ( 'available', $ope_available, $available )
+            ->Where ( 'state_asset_id', $ope_state_asset_id, $state_asset_id )
             ->get();
         $proveedores    = Supplier::all();
         $estados        = StateAsset::all();
-        //dd($activos);
+
         return view('mantenedores.assets.listar', [
             'activos'       => $activos,
             'proveedores'   => $proveedores,
@@ -85,9 +89,12 @@ class MantenedorDeActivos extends Controller
         //
         $activo         = Asset::find($id);
         $proveedores    = Supplier::all();
+        $categorias     = Category::all();
+
         return view('mantenedores.assets.actualizar', [
             'activo'        => $activo,
             'proveedores'   => $proveedores,
+            'categorias'    => $categorias,
         ]);
     }
     public function actionEdit($id, Request $request)
@@ -98,6 +105,8 @@ class MantenedorDeActivos extends Controller
         $name           = $_POST['name'];
         $description    = $_POST['description'];
         $supplier_id    = $_POST['supplier_id'];
+        $category_id    = $_POST['category_id'];
+
         $validator = Validator::make($request->all(), [
             'code'          => 'required',
             'name'          => 'required',
@@ -107,13 +116,25 @@ class MantenedorDeActivos extends Controller
             'name.required'         => trans(   'mantActivos.msj_name_requerido' ),
             'description.required'  => trans(   'mantActivos.msj_description_requerido'  ),
         ]);
+
+        if ($validator->fails()) {
+
+            return redirect('actualizarActivo/'.$id)
+                ->withErrors($validator)
+                ->withInput();
+        }
+
         $activo                 = Asset::find($id);
         $activo->code           = $code;
         $activo->name           = $name;
         $activo->description    = $description;
         $activo->supplier_id    = $supplier_id;
+        $activo->category_id    = $category_id;
+
+        $activo->user_control  	= $request->user()->identifier;
         $activo->save();
-        $request->session()->flash('alert-success', trans('mantActivos.msj_asset_actualizado_ok'));
+        $request->session()->flash('alert-success',
+            trans('mantActivos.msj_asset_actualizado_ok'));
         return Redirect::to('actualizarActivo/'.$id);
     }
     /**

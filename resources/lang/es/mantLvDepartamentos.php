@@ -2,17 +2,9 @@
 
 /*
 |--------------------------------------------------------------------------
-| CAMPOS QUE ESTAN EN LA TABLA USERS
+| CAMPOS QUE ESTAN EN LA TABLA leveldepartments
 |--------------------------------------------------------------------------
-|   identifier  : Este campo guarda el rut completo (11111111-1).
-|   first_name  : Este campo guarda el nombre o los nombres.
-|   last_name   : Este campo guarda el apellido o los apellidos.
-|   email       : Este campo guarda el correo elect�nico.
-|   password    : Este campo guarda la contrase�a.
-|   city_id     : Este campo guarda el id de la tabla cities.
-|   active      : Este campo indica si el usuario esta activo: 1 o si est� inactivo: 0.
-|   city_id     : Este campo guarda el id de la tabla cities.
-|
+|   level  : Este campo guarda el nivel.
 |
 */
 

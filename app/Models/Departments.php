@@ -14,4 +14,10 @@ class Departments extends Model
     {
         return $this->belongsTo(LevelDepartments::class, 'levelDepartments_id', 'id');
     }
+
+    // | positions | >- | departments |
+    public function positions()
+    {
+        return $this->hasMany( Position::class, 'department_id', 'id' );
+    }
 }

@@ -2,17 +2,11 @@
 
 /*
 |--------------------------------------------------------------------------
-| CAMPOS QUE ESTAN EN LA TABLA USERS
+| CAMPOS QUE ESTAN EN LA TABLA DEPARTMENTS
 |--------------------------------------------------------------------------
-|   identifier  : Este campo guarda el rut completo (11111111-1).
-|   first_name  : Este campo guarda el nombre o los nombres.
-|   last_name   : Este campo guarda el apellido o los apellidos.
-|   email       : Este campo guarda el correo elect?nico.
-|   password    : Este campo guarda la contrase?a.
-|   city_id     : Este campo guarda el id de la tabla cities.
-|   active      : Este campo indica si el usuario esta activo: 1 o si est? inactivo: 0.
-|   city_id     : Este campo guarda el id de la tabla cities.
-|
+|   name                    : Este campo guarda el rut completo (11111111-1).
+|   description             : Este campo guarda el nombre o los nombres.
+|   levelDepartments_id     : Este campo guarda el apellido o los apellidos.
 |
 */
 
@@ -43,11 +37,16 @@
 return[
     'tit_listar'		    => 'Mantenedor de departamentos',
 	'tit_Ingresar'		    => 'Ingresar de departamentos',
-	
+	'tit_Actualizar'		=> 'Actualizar departamento',
+    'tit_ver'		        => 'Detalle del departamento',
+
 	'l_departamento'		=> 'Nombre del departamento',
 	'l_nivel'				=> 'Nivel del departamento',
+
+    'lvm_departamento'		=> 'Nombre',
+    'lvm_cargos'		    => 'Cargos',
 	
-	'btn_nuevo'				=> 'Nuevo departamento',
+	'btn_nuevo'				=> 'Nuevo',
 	'btn_salir'				=> 'Salir',
 	'btn_buscar'			=> 'Buscar',
 	'btn_volver'			=> 'Volver',
@@ -72,6 +71,14 @@ return[
 	'msj_name_required'					=> 'Necesitamos conocer el nombre del departamento.',
 	'msj_levelDepartments_id_required'	=> 'Necesitamos conocer el nivel del departamento.',
 	'msj_departamento_ingresado'		=> 'El cargo ha sido ingresado correctamente.',
+    'msj_departamento_actualizar'		=> 'El cargo ha sido actualizado correctamente.',
+
+    'msj_sin_cargos'		            => 'Sin cargos asociados.',
+
+    'jal_no_se_puede_elmnar'            => 'No es posible eliminar el departamento, ya que posee cargos asociados. ',
+    'jal_confirm_elmnar'                => 'Se eliminará el departamento: ',
+    'msj_eliminado_1'                   => 'El departamento: ',
+    'msj_eliminado_2'                   => ', ha sido correctamente eliminado ',
 ];
 
 

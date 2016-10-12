@@ -117,6 +117,7 @@ class MantenedorDeDepartamentos extends Controller
         $department->name                   = $name;
         $department->levelDepartments_id    = $levelDepartments_id;
 
+        $department->user_control  	        = $request->user()->identifier;
         $department->save();
 
         $request->session()->flash('alert-success', trans('mant_departamentos.msj_departamento_ingresado'));
@@ -132,9 +133,16 @@ class MantenedorDeDepartamentos extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show( $id )
     {
         //
+        $departamento = Departments::find( $id );
+
+        return view('mantenedores.departments.ver', [
+
+            'departamento' => $departamento,
+
+        ]);
     }
 
     /**
@@ -146,18 +154,62 @@ class MantenedorDeDepartamentos extends Controller
     public function edit($id)
     {
         //
+        //dd('aca');
+        $departamento = Departments::find($id);
+
+        $niveles        = LevelDepartments::all();
+
+        return view('mantenedores.departments.actualizar', [
+
+            'niveles'       => $niveles,
+            'departamento' => $departamento,
+
+        ]);
+
+
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update( Request $request )
     {
-        //
+        //dd($_POST);
+        $id                     = $_POST['id'];
+        $name                   = $_POST['name'];
+        $levelDepartments_id    = $_POST['levelDepartments_id'];
+
+        $validator = Validator::make($request->all(), [
+            'name'                  => 'required',
+        ], $messages = [
+            'name.required'                 => trans('mant_departamentos.msj_name_required'),
+        ]);
+
+        if ($validator->fails()) {
+
+            return redirect('actualizarDepartamento/'.$id)
+                ->withErrors($validator)
+                ->withInput();
+        }
+        // fin validaciones
+
+
+        $department                         = Departments::find($id);
+        $department->name                   = $name;
+        $department->levelDepartments_id    = $levelDepartments_id;
+
+        $department->user_control  	        = $request->user()->identifier;
+        $department->save();
+
+        $request->session()->flash( 'alert-success',
+            trans('mant_departamentos.msj_departamento_actualizar') );
+        return Redirect::to('actualizarDepartamento/'.$id);
+
+
+
     }
 
     /**
@@ -166,8 +218,19 @@ class MantenedorDeDepartamentos extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,  $id)
     {
         //
+        $departmento = Departments::find($id);
+
+        $mensaje    = trans( 'mant_departamentos.msj_eliminado_1').
+            $departmento->name.
+            trans( 'mant_departamentos.msj_eliminado_2');
+
+        $departmento->delete();
+
+        $request->session()->flash('alert-success', $mensaje);
+        return Redirect::to(route('listarUsuario'));
+
     }
 }

@@ -51,7 +51,7 @@ class AssignmentTableSeeder extends Seeder
 
             $asignacion->save();
 
-            if($state_assignment_id == 1)
+            if($state_assignment_id != 2)
             {
                 $activo = Asset::find($asset_id);
                 $activo->available = 1;

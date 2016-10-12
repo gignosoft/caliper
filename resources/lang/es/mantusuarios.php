@@ -55,10 +55,10 @@ return[
 	'ph_first_name'					=> 'Ingrese nombre',		
 	'ph_last_name'					=> 'Ingrese apellido',
 	'ph_email'						=> 'Ingrese su correo electrónico',	
-	'ph_identifier'					=> 'Ingrese un RUT ej: 12344567-9',	
+	'ph_identifier'					=> 'RUT ej: 12344567-9',
 		
 	'btn_buscar'					=> 'Buscar',
-	'btn_nuevo'						=> 'Nuevo usuario',
+	'btn_nuevo'						=> 'Nuevo',
 	'btn_salir'						=> 'Salir',
 	'btn_volver'					=> 'Volver',
 	'btn_guardar'					=> 'Guardar',

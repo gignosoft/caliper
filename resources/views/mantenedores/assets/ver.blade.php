@@ -16,6 +16,11 @@
     </p>
 
     <p class="row">
+        <div class="col-xs-3">{{ trans( 'mantActivos.lvm_category' ) }}</div>
+        <div class="col-xs-9">: {{ $activo->categories->find($activo->category_id)->name }}</div>
+    </p>
+
+    <p class="row">
         <div class="col-xs-3">{{ trans( 'mantActivos.lvm_name' ) }}</div>
         <div class="col-xs-9">: {{ $activo->name }}</div>
     </p>
@@ -56,6 +61,7 @@
         <div class="col-xs-9">: {{ $activo->purchases->find($activo->purchase_id)->date }}</div>
     </p>
 
+
     <p class="row">
     <div class="col-xs-3">{{ trans( 'mantActivos.lvm_assignements' ) }}</div>
     <div class="col-xs-9">:<br/>
@@ -66,7 +72,7 @@
                     <ul>
                         <li>{{ trans( 'mantActivos.lvm_state' ). ': '.$assignment->state_assignments->find($assignment->state_assignment_id)->name       }}</li>
                         <li>{{ trans( 'mantActivos.lvm_asignado' ). ': '.$assignment->assigned_at                                                        }}</li>
-                        <li>{{ trans( 'mantActivos.lvm_devielto' ). ': '.$assignment->returned_at                                                        }}</li>
+                        <li>{{ trans( 'mantActivos.lvm_devuelto' ). ': '.$assignment->returned_at                                                        }}</li>
                     </ul>
                 </li>
 

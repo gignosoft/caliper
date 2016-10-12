@@ -54,6 +54,7 @@ return[
     'l_name'						=> 'Nombre',
     'l_description'                 => 'Descripción',
     'l_supplier'                    => 'Proveedor',
+    'l_category_id'                 => 'Categoría',
 	
 	'th_code'						=> 'Código',
 	'th_name'						=> 'Nombre',
@@ -95,6 +96,7 @@ return[
     'lvm_fecha_purchase'            => 'Fecha de compra', 
 	'lvm_assignements'            	=> 'Asignaciones',
 	'lvm_price'            			=> 'Precio',
+    'lvm_category'            		=> 'Categoría',
 
     'val_disponible'                => 'disponible.',
     'val_no_disponible'             => 'no disponible.',
