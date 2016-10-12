@@ -30,13 +30,12 @@ function problemas()
 
 function confirmarEliminar(url, dato, msj)
 {
-    var path = window.location;
     var r = confirm(msj+" "+dato);
     if (r == true) {
 
         location.href=url;
     } else {
-        return;//location.href=path;
+        return;
     }
 }
 

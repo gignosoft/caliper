@@ -78,7 +78,7 @@
                     <a class="iconos"
                        href="javascript:confirmarEliminar(
                                '{{ url('eliminarUsuario/'.$department->id) }}',
-                               '{{ $department->first_name }}',
+                               '{{ $department->name }}',
                                '{{ trans('mant_departamentos.jal_confirm_elmnar_user')}}'
                                )"
                        data-toggle="tooltip"

@@ -114,7 +114,7 @@ class MantenedorDeCargos extends Controller
 
         $cargo = new Position();
         $cargo->name                = $name;
-        $cargo->LevelPositions_id   = $levelpositions_id;
+        $cargo->levelpositions_id   = $levelpositions_id;
         $cargo->department_id       = $department_id;
         $cargo->user_control        = $request->user()->identifier;
 
@@ -150,7 +150,7 @@ class MantenedorDeCargos extends Controller
 
         $id                 = $_POST['id'];
         $name               = $_POST['name'];
-        $levelpositions_id  = $_POST['LevelPositions_id'];
+        $levelpositions_id  = $_POST['levelpositions_id'];
         $department_id      = $_POST['department_id'];
 
 
@@ -171,14 +171,14 @@ class MantenedorDeCargos extends Controller
 
         $cargo = Position::find($id);
         $cargo->name                = $name;
-        $cargo->LevelPositions_id   = $levelpositions_id;
+        $cargo->levelpositions_id   = $levelpositions_id;
         $cargo->department_id       = $department_id;
         $cargo->user_control        = $request->user()->identifier;
 
         $cargo->save();
 
         $request->session()->flash('alert-success',
-            'El Cargo ha sido correctamente actualizado.');
+            trans( 'mant_cargos.msj_update_ok' ) );
         return Redirect::to('actualizarCargo/' . $id);
 
 
@@ -187,15 +187,9 @@ class MantenedorDeCargos extends Controller
     public function ver($id)
     {
         $cargo                      = Position::find($id);
-        $usuarios                   = $cargo->users;//User::all();
-        $numUsuarios                = count ( $usuarios );
-
-       // dd($usuarios);
-        return view('mantenedores/verCargo',
+        return view('mantenedores.positions.ver',
             [
-                'cargo'         => $cargo,
-                'numUsuarios'   => $numUsuarios,
-                'usuarios'      => $usuarios,
+                'cargo' => $cargo,
             ]);
 
     }
@@ -204,7 +198,9 @@ class MantenedorDeCargos extends Controller
     {
         //dd($_POST);
         $cargo      = Position::find($id);
-        $mensaje    = 'El cargo: '.$cargo->name.', ha sido correctamente eliminado.';
+        $mensaje    = trans( 'mant_cargos.msj_eliminado_1' ) .
+            $cargo->name.
+            trans( 'mant_cargos.msj_eliminado_2' ) ;
 
         $cargo->delete();
         $request->session()->flash('alert-success', $mensaje);

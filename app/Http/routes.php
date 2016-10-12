@@ -157,7 +157,7 @@ Route::group(['middleware' => ['web']], function () {
             ->name('actualizarCargo');
 
         /* ver */
-        Route::get('/verCargo/{id}',
+        Route::get('verCargo/{id}',
             'Mantenedores\MantenedorDeCargos@ver')
             ->name('verCargo');
 

@@ -52,8 +52,8 @@
 
                         <!-- INPUT SELECT -->
                         <div class="form-group col-sm-12 col-xs-12 pegado-izquierda">
-                            <label for="levelPositions_id">{{ trans('mant_cargos.l_nivel') }}</label>
-                            <select class="form-control" name="levelpositions_id" id="levelpositions_id"  >
+                            <label for="department_id">{{ trans('mant_cargos.l_nivel') }}</label>
+                            <select class="form-control" name="department_id" id="department_id"  >
                                 @foreach( $departments as $department )
 
                                     @if( $department->id == $cargo->department_id )

@@ -79,23 +79,29 @@
 
                 <td><a class="iconos" href="{{ url('actualizarCargo/'.$cargo->id) }}"
                        data-toggle="tooltip"
-                       title="{{ trans('mant_departamentos.tt_Editar')}}" >
+                       title="{{ trans('mant_cargos.tt_Editar')}}" >
                         <img src="{{ url('img/ic_edit_black_18dp_1x.png') }}"/>
                     </a> |
 
-                    <a class="iconos" href="{{ url('#') }}"
+                    <a class="iconos" href="{{ url('verCargo/'.$cargo->id) }}"
                        data-toggle="tooltip"
-                       title="{{ trans('mant_departamentos.tt_ver_mas')}}" >
+                       title="{{ trans('mant_cargos.tt_ver_mas')}}" >
                         <img src="{{ url('img/ic_visibility_black_18dp_1x.png') }}"/>
                     </a> |
                     <a class="iconos"
-                       href="javascript:confirmarEliminar(
-                               '{{ url('#') }}',
+
+                       @if( count( $cargo->users ) == 0 )
+                            href="javascript:confirmarEliminar(
+                               '{{ url('eliminarCargo/'.$cargo->id) }}',
                                '{{ $cargo->name  }}',
-                               '{{ trans('mant_departamentos.jal_confirm_elmnar_user')}}'
+                               '{{ trans('mant_cargos.jal_confirm_elmnar_user')}}'
                                )"
+                       @else
+                            href="javascript:alert('{{ trans('mant_cargos.jal_confirm_elmnar_cargo')}}')"
+                       @endif
+
                        data-toggle="tooltip"
-                       title="{{ trans('mant_departamentos.tt_Eliminar')}}">
+                       title="{{ trans('mant_cargos.tt_Eliminar')}}">
                         <img src="{{ url('img/ic_close_black_18dp_1x.png') }}"/>
                     </a>
 
