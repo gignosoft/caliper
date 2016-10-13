@@ -14,6 +14,6 @@ class StateAsset extends Model
     // | state_assets | >- | assets |
     public function assets()
     {        
-        return $this->hasMany(Asset::class, 'asset_id');
+        return $this->hasMany(Asset::class, 'state_asset_id', 'id');
     }
 }

@@ -87,7 +87,7 @@
                                '{{ trans('xxxxxxxxxxxx.jal_confirm_elmnar')}}'
                                )"
                        @else
-                       href="javascript:alert('{{ trans('xxxxxxxxxxxx.jal_confirm_elmnar')}}')"
+                       href="javascript:alert('{{ trans('xxxxxxxxxxxx.jal_confirm_elmnar_no')}}')"
                        @endif
                     <!-- fin si tiene algo asociado -->
                        data-toggle="tooltip"

@@ -30,16 +30,8 @@ class DatabaseSeeder extends Seeder
         $this->call(CompanyTableSeeder::class);
 
 
-        // |suppliers| >-< |currencies|
-        $this->call(CurrencyTableSeeder::class);
+        //Supplier - Proveedor
         $this->call(SupplierTableSeeder::class);
-        $this->call(CurrencySupplierTableSeeder::class);
-
-        // |suppliers| >-< |pay_metods|
-        $this->call(PayMetodTableSeeder::class);
-        $this->call(PaySuppliersTableSeeder::class);
-
-
 
         $this->call(LevelDepartmentsSeeder::class);
         $this->call(DepartmentsSeeder::class);

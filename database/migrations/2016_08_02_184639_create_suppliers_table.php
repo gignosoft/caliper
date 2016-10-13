@@ -19,6 +19,8 @@ class CreateSuppliersTable extends Migration
             $table->integer('company_id')->unsigned();
             $table->integer('city_id')->unsigned();
             $table->string('name');
+            $table->string('email');
+            $table->string('phone');
             $table->string('description');
 
             $table->string('user_control');

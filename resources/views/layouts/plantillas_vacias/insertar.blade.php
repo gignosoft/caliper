@@ -1,15 +1,15 @@
 @extends('layouts.mantenedores.insertar.base')
 
 @section('titulo')
-    {{ trans('++++++++++++++++++.++++++++++++++++') }}
+    {{ trans('xxxxxxxxxx.xxxxxxxxxx') }}
 @endsection
 
 @section('titulo_principal')
-    {{ trans('++++++++++++++++++.++++++++++++++++') }}
+    {{ trans('xxxxxxxxxx.xxxxxxxxxx') }}
 @endsection
 
 @section('formulario')
-    <form action="{{ url('++++++++++++++') }}" method="post">
+    <form action="{{ url('xxxxxxxxxx') }}" method="post">
         {{ csrf_field() }}
 
         <div class="panel-group" id="accordion">
@@ -18,7 +18,7 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">{{ trans('++++++++++++++++++.++++++++++++++++') }}</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">{{ trans('xxxxxxxxxx.xxxxxxxxxx') }}</a>
                     </h4>
                 </div>
                 <div id="collapse1" class="panel-collapse collapse in">
@@ -27,16 +27,16 @@
 
                         <!-- LABEL E INPUT TEXT -->
                         <div class="form-group col-sm-12 col-xs-12 pegado-izquierda">
-                            <label for="++++++++++++">{{ trans('++++++++++++++++++.++++++++++++++++') }}</label>
+                            <label for="++++++++++++">{{ trans('xxxxxxxxxx.xxxxxxxxxx') }}</label>
                             <input type="text" class="form-control" name="++++++++++++" id="++++++++++++" value=""
-                                   placeholder="{{ trans('++++++++++++++++++.++++++++++++++++') }}">
+                                   placeholder="{{ trans('xxxxxxxxxx.xxxxxxxxxx') }}">
                         </div>
 
                         <!-- INPUT SELECT -->
                         <div class="form-group col-sm-12 col-xs-12 pegado-izquierda">
-                            <label for="levelPositions_id">{{ trans('++++++++++++++++++.++++++++++++++++') }}</label>
+                            <label for="levelPositions_id">{{ trans('xxxxxxxxxx.xxxxxxxxxx') }}</label>
                             <select class="form-control" name="++++++++++++" id="++++++++++++"  >
-                                <option value="" >{{ trans('++++++++++++++++++.++++++++++++++++') }}</option>
+                                <option value="" >{{ trans('xxxxxxxxxx.xxxxxxxxxx') }}</option>
                                 @foreach( $XXXXXXXXS as $XXXXXXXX )
                                     <option value="{{ $XXXXXXXX }}">{{ $XXXXXXXX }}</option>
                                 @endforeach
@@ -54,11 +54,11 @@
 
         <!--botones-->
         <div class="row col-sm-12 padding col-xs-12  margenes-botones">
-            <input type="submit" class="btn btn-primary " value="{{ trans('++++++++++++++++++.++++++++++++++++') }}">
+            <input type="submit" class="btn btn-primary " value="{{ trans('xxxxxxxxxx.xxxxxxxxxx') }}">
 
             <input type="button" class="btn btn-primary "
                    onclick='window.location ="{{ route("++++++++++++++++") }}"'
-                   value="{{ trans('++++++++++++++++++.++++++++++++++++') }}">
+                   value="{{ trans('xxxxxxxxxx.xxxxxxxxxx') }}">
         </div>
         <div class="row"> </div><hr/>
         <!-- fin botones-->

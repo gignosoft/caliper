@@ -120,42 +120,14 @@
             'company_id'    => rand(1, $max_company_id),
             'city_id'       => rand(1, $max_id_city),
             'name'          => $faker->name,
+            'email'          => $faker->email,
+            'phone'          => $faker->phoneNumber,
             'description'   => $faker->paragraph,
 
             'user_control'  => 'seeder',
         ];
 
     });
-/*--------------------------------------------------------------------------
-| Currency Factory
-|-----------------------------------------------------------------------*/
-    $factory->defineAs(\App\Models\Currency::class,'clp', function (Faker\Generator $faker){
-
-        return [
-            'name'          => 'CLP',
-            'user_control'  => 'seeder',
-        ];
-    });
-/*--------------------------------------------------------------------------
-| PayMetod Factory
-|-----------------------------------------------------------------------*/
-    $factory->defineAs(\App\Models\PayMetod::class,'Contado', function (Faker\Generator $faker){
-
-        return [
-            'name'          => 'Contado',
-            'user_control'  => 'seeder',
-        ];
-
-    });
-    $factory->defineAs(\App\Models\PayMetod::class,'30', function (Faker\Generator $faker){
-
-        return [
-            'name'          => '30 días',
-            'user_control'  => 'seeder',
-        ];
-
-    });
-
 /*--------------------------------------------------------------------------
 | Position Factory
 |-----------------------------------------------------------------------*/

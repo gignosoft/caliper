@@ -15,6 +15,7 @@
             <ul>
                 <li><a href="{{ route('listarActivo') }}            ">Mantenedor de activos                </a></li>
                 <li><a href="{{ route('listarCategorias') }}        ">Mantenedor de categorias              </a></li>
+                <li><a href="{{ route('listarEstadoActivo') }}      ">Mantenedor de estados de activos      </a></li>
             </ul>
         </li>
         <li>Cargos
