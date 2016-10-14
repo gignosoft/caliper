@@ -31,6 +31,7 @@
             </ul>
         </li>
         <li><a href="{{ route('listarRubro') }}                   ">Mantenedor de rubro de la empresa        </a></li>
+        <li><a href="{{ route('listarEstadoAsignacion') }}        ">Mantenedor de estado de asignaciones     </a></li>
     </ul>
 
 @endsection

@@ -13,10 +13,9 @@ class StateAssignment extends Model
     // |state_assignments| >-< |assignments|
     public function assignments()
     {
-        return $this->belongsToMany(Assignment::class,
-            'state_assignment_assignments',
+        return $this->hasMany(Assignment::class,
             'state_assignment_id',
-            'assignment_id'
+            'id'
         );
     }
 

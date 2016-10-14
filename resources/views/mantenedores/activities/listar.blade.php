@@ -11,13 +11,13 @@
 @endsection
 
 <!-- botón nuevo -->
-@section('url_btn_nuevo')   {{ url('insertarRubro') }}           @endsection
-@section('value_btn_nuevo') {{ trans('mant_activities.btn_nuevo') }}  @endsection
+@section('url_btn_nuevo')   {{ url('insertarRubro') }}                  @endsection
+@section('value_btn_nuevo') {{ trans('mant_activities.btn_nuevo') }}    @endsection
 <!-- fin botón nuevo -->
 
 <!-- botón salir -->
 @section('url_btn_salir')   {{ url('mantenedores') }}                   @endsection
-@section('value_btn_salir') {{ trans('mant_activities.btn_salir') }}  @endsection
+@section('value_btn_salir') {{ trans('mant_activities.btn_salir') }}    @endsection
 <!-- fin botón salir  -->
 
 <!-- tabla -->
