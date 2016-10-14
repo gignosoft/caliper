@@ -12,7 +12,7 @@ class Activity extends Model
     // | activities | -< | companies |
     public function companies()
     {
-        return $this->hasMany(Company::class);
+        return $this->hasMany( Company::class, 'activity_id', 'id' );
     }
 
 }

@@ -30,6 +30,7 @@
                 <li><a href="{{ route('listarNivelDepartamento') }} ">Mantenedor de niveles de departamentos</a></li>
             </ul>
         </li>
+        <li><a href="{{ route('listarRubro') }}                   ">Mantenedor de rubro de la empresa        </a></li>
     </ul>
 
 @endsection

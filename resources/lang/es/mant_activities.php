@@ -4,7 +4,7 @@
 |--------------------------------------------------------------------------
 | CAMPOS QUE ESTAN EN LA TABLA USERS
 |--------------------------------------------------------------------------
-|   identifier  : Este campo guarda el nombre del estado.|
+|   name  : Este campo guarda el nombre del rubro.
 |
 */
 
@@ -29,7 +29,7 @@
 |
 */
 
-// {{ trans( 'mant_state_assets.xxxxxxxxx' ) }}
+// {{ trans( 'mant_activities.xxxxxxxxx' ) }}
 
 return[
     'btn_buscar'					=> 'Buscar',
@@ -44,10 +44,10 @@ return[
 
     'ph_name'                   => 'Ingrese el nombre.',
 
-    'tp_datos_g1'			    => 'Datos del nivel del activo',
+    'tp_datos_g1'			    => 'Datos del rubro',
 
     /* Listar */
-    'tit_listar'				=> 'Mantenedor de estado del activo.',
+    'tit_listar'				=> 'Mantenedor de rubros o giros.',
 
     'th_name'                   => 'Nombre',
     'th_accion'					=> 'Acción',
@@ -56,30 +56,30 @@ return[
 
 
 
-    'jal_confirm_elmnar'        => 'Se eliminará el estado: ',
+    'jal_confirm_elmnar'        => 'Se eliminará el rubro: ',
 
     /* Insertar - actualizar */
-    'tit_insertar'				=> 'Ingresar nuevo estado del activo.',
-    'tit_actualizar'			=> 'Actualizar estado del activo.',
+    'tit_insertar'				=> 'Ingresar nuevo rubro.',
+    'tit_actualizar'			=> 'Actualizar rubro.',
 
     'msj_name_required'         => 'El nombre es requerido',
-    'msj_ingresado'             => 'El estado ha sido ingresado exitosamente',
-    'msj_actualizado'           => 'El estado ha sido actualizado exitosamente',
+    'msj_ingresado'             => 'El rubro ha sido ingresado exitosamente',
+    'msj_actualizado'           => 'El rubro ha sido actualizado exitosamente',
 
     'l_name'					=> 'Nombre',
 
     /* ver */
-    'tp_ver'				=> 'Detalles del estado del activo.',
+    'tp_ver'				=> 'Detalles del rubro.',
 
     'lvm_nombre'            => 'Nombre',
-    'lvm_activos'           => 'Activos',
+    'lvm_empresas'          => 'Empresas',
 
-    'msj_sin_activos'       => 'Sin activos asociados.',
+    'msj_sin'               => 'Sin empresas asociadas.',
 
-    'jal_confirm_elmnar'    => 'Se eliminará el estado: ',
-    'jal_confirm_elmnar_no' => 'El estado no se puede eliminar ya que posee activos asociados',
+    'jal_confirm_elmnar'    => 'Se eliminará el rubro: ',
+    'jal_confirm_elmnar_no' => 'El rubro no se puede eliminar ya que posee empresas asociadas',
 
-    'msj_eliminado_1'       => 'El estado del activo: ',
+    'msj_eliminado_1'       => 'El rubro: ',
     'msj_eliminado_2'       => ', ha sido correctamente eliminado.',
 
 ];
