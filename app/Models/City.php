@@ -12,6 +12,13 @@ class City extends Model
 
 
 
+    public function suppliers()
+    {
+        // |suppliers| -< |cities|
+        return $this->hasMany(Supplier::class,'city_id', 'id');
+    }
+
+
     public function countries()
     {
         // |countries| -< |cities|
@@ -27,7 +34,7 @@ class City extends Model
     // | offices | >- | cities |
     public function offices()
     {
-        return $this->hasMany(Office::class, 'city_id');
+        return $this->hasMany(Office::class, 'city_id', 'id');
     }
     
 

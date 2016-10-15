@@ -33,6 +33,8 @@
         <li><a href="{{ route('listarRubro') }}                   ">Mantenedor de rubro de la empresa        </a></li>
         <li><a href="{{ route('listarEstadoAsignacion') }}        ">Mantenedor de estado de asignaciones     </a></li>
         <li><a href="{{ route('listarRol') }}                     ">Mantenedor de roles de usuario           </a></li>
+        <li><a href="{{ route('listarCiudad') }}                  ">Mantenedor de roles de ciudades          </a></li>
+        <li><a href="{{ route('listarOficina') }}                 ">Mantenedor de oficinas                   </a></li>
     </ul>
 
 @endsection

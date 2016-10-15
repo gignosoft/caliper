@@ -12,13 +12,8 @@ class Office extends Model
     // | offices | >- | cities |
     public function cities()
     {
-        return $this->belongsTo(City::class);
+        return $this->belongsTo(City::class, 'city_id', 'id');
     }
 
-    // | offices | -< | departments |
-    public function departments()
-    {
-        return $this->hasMany(Department::class,'office_id');
-    }
 
 }
