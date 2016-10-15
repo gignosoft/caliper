@@ -59,7 +59,7 @@ class MantenedorDeCategorias extends Controller
      */
     public function create()
     {
-        //
+        return view('mantenedores.categories.insertar');
     }
 
     /**

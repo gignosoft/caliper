@@ -275,6 +275,16 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('/listarCategorias',
             'Mantenedores\MantenedorDeCategorias@search')
             ->name('listarCategorias');
+
+        /* create */
+        Route::get('insertarRol',
+            'Mantenedores\MantenedorDeCategorias@create')
+            ->name('insertarCategoria');
+
+        Route::post('insertarRol',
+            'Mantenedores\MantenedorDeCategorias@store')
+            ->name('insertarCategoria');
+
         /*|--------------------------------------------------------------------------
         | MANTENEDOR DE ESTADOS DE ACTIVOS
         |------------------------------------------------------------------------*/
