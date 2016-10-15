@@ -70,6 +70,33 @@ class MantenedorDeCategorias extends Controller
      */
     public function store(Request $request)
     {
+
+        $name           = $_POST['name'];
+        $user_control   = $request->user()->identifier;
+
+        $validator = Validator::make($request->all(), [
+            'name'                  => 'required',
+        ], $messages = [
+            'name.required'         => trans('mant_categorias.msj_name_required'),
+        ]);
+
+        if ($validator->fails()) {
+
+            return redirect('insertarCategorias')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        // fin validaciones
+
+        $categoria = new Category();
+
+        $categoria->name           = $name;
+        $categoria->user_control   = $user_control;
+
+        $categoria->save();
+
+        $request->session()->flash('alert-success', trans('mant_categorias.msj_ingresado'));
+        return Redirect::to('insertarCategorias');
         //
     }
 
@@ -81,7 +108,11 @@ class MantenedorDeCategorias extends Controller
      */
     public function show($id)
     {
-        //
+        $categoria = Category::find( $id );
+
+        return view('mantenedores.categories.ver', [
+            'categoria'   => $categoria,
+        ]);
     }
 
     /**
@@ -92,7 +123,11 @@ class MantenedorDeCategorias extends Controller
      */
     public function edit($id)
     {
-        //
+        $categoria = Category::find($id);
+
+        return view('mantenedores.categories.actualizar', [
+            'categoria'   => $categoria,
+        ]);
     }
 
     /**
@@ -102,9 +137,36 @@ class MantenedorDeCategorias extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        //dd($_POST);
+        $name           = $_POST['name'];
+        $id             = $_POST['id'];
+        $user_control   = $request->user()->identifier;
+
+        $validator = Validator::make($request->all(), [
+            'name'                  => 'required',
+        ], $messages = [
+            'name.required'         => trans('mant_categorias.msj_name_required'),
+        ]);
+
+        if ($validator->fails()) {
+
+            return redirect('actualizarCategorias/' . $id)
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        // fin validaciones
+
+        $categoria = Category::find( $id );
+
+        $categoria->name           = $name;
+        $categoria->user_control   = $user_control;
+
+        $categoria->save();
+        $request->session()->flash( 'alert-success', trans('mant_categorias.msj_actualizado') );
+        return Redirect::to( 'actualizarCategorias/'.$id );
     }
 
     /**
@@ -113,8 +175,18 @@ class MantenedorDeCategorias extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        //
+        $categoria = Category::find( $id );
+
+        $mensaje    = trans( 'mant_categorias.msj_eliminado_1').
+            $categoria->name.
+            trans( 'mant_categorias.msj_eliminado_2');
+
+        $categoria->delete();
+
+        $request->session()->flash('alert-success', $mensaje);
+        return Redirect::to( route('listarCategorias') );
     }
+
 }

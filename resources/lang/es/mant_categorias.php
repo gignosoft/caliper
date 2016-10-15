@@ -41,7 +41,7 @@
 return[
     'tit_listarCategoria'			=> 'Mantenedor de categorias',
 
-    'btn_nuevo'						=> 'Nueva categoria',
+    'btn_nuevo'						=> 'Nueva',
     'btn_salir'						=> 'Salir',
     'btn_buscar'					=> 'Buscar',
     'btn_volver'					=> 'Volver',
@@ -52,6 +52,36 @@ return[
     'msj_no_encontrado'             => 'Sin resultados de búsqueda',
 
     'ph_name'						=> 'Ingrese nombre categoría',
+
+    /* Insertar - actualizar */
+    'tit_insertar'				    => 'Ingresar nueva categoría.',
+    'tit_actualizar'		    	=> 'Actualizar categoría.',
+
+    'tp_datos_g1'                   => 'Datos categoría.',
+
+    'msj_name_required'             => 'La categoría es requerida',
+    'msj_ingresado'                 => 'La categoría ha sido ingresada exitosamente',
+    'msj_actualizado'               => 'La categoría ha sido actualizada exitosamente',
+
+    'l_name'					    => 'Nombre',
+
+    /* ver */
+    'tp_ver'				        => 'Detalles de la categoría.',
+
+    'lvm_nombre'                    => 'Nombre',
+    'lvm_r_1'                       => 'Activos',
+
+    'msj_sin'                       => 'Sin usuarios asociadas.',
+
+    'jal_confirm_elmnar'            => 'Se eliminará la categoría: ',
+    'jal_confirm_elmnar_no'         => 'La categoría no se puede eliminar, ya que posee activos asociados',
+
+    'msj_eliminado_1'               => 'La categoría: ',
+    'msj_eliminado_2'               => ', ha sido correctamente eliminada.',
+
+    'tt_Editar'						=> 'Editar',
+    'tt_ver_mas'					=> 'Ver más',
+    'tt_Eliminar'					=> 'Eliminar',
 
 ];
 /*

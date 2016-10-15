@@ -1,18 +1,19 @@
 @extends('layouts.mantenedores.insertar.base')
 
 @section('titulo')
-    {{ trans('mant_categorias.tit_insertar') }}
+    {{ trans('mant_categorias.tit_actualizar') }}
 @endsection
 
 @section('titulo_principal')
-    {{ trans('mant_categorias.tit_insertar') }}
+    {{ trans('mant_categorias.tit_actualizar') }}
 @endsection
 
 @section('formulario')
 
-    <form action="{{ url('insertarCategorias') }}" method="post">
+    <form action="{{ url('actualizarCategorias') }}" method="post">
         {{ csrf_field() }}
 
+        <input type="hidden" name="id" value="{{ $categoria->id }}" >
         <div class="panel-group" id="accordion">
 
             <!--inicio Datos personales-->
@@ -29,8 +30,7 @@
                         <!-- LABEL E INPUT TEXT -->
                         <div class="form-group col-sm-12 col-xs-12 pegado-izquierda">
                             <label for="name">{{ trans('mant_categorias.l_name') }}</label>
-                            <input type="text" class="form-control" name="name" id="name" value=""
-                                   placeholder="{{ trans('mant_categorias.ph_name') }}">
+                            <input type="text" class="form-control" name="name" id="name" value="{{ $categoria->name }}">
                         </div>
 
                         <!-- FIN DEL CUERPO DEL GRUPO 1 -->

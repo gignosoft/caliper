@@ -11,7 +11,7 @@
 @endsection
 
 <!-- botón nuevo -->
-@section('url_btn_nuevo')   {{ url('#') }}           @endsection
+@section('url_btn_nuevo')   {{ url('insertarCategorias') }}           @endsection
 @section('value_btn_nuevo') {{ trans('mant_categorias.btn_nuevo') }} @endsection
 <!-- fin botón nuevo -->
 
@@ -56,25 +56,29 @@
                 <td>{{ $categoria->name                    }}</td>
 
 
-                <td><a class="iconos" href="{{ url('actualizarUsuario/'.$categoria->id) }}"
+                <td><a class="iconos" href="{{ url('actualizarCategorias/'.$categoria->id) }}"
                        data-toggle="tooltip"
-                       title="{{ trans('mant_departamentos.tt_Editar')}}" >
+                       title="{{ trans('mant_categorias.tt_Editar')}}" >
                         <img src="{{ url('img/ic_edit_black_18dp_1x.png') }}"/>
                     </a> |
 
-                    <a class="iconos" href="{{ url('verUsuario/'.$categoria->id) }}"
+                    <a class="iconos" href="{{ url('verCategorias/'.$categoria->id) }}"
                        data-toggle="tooltip"
-                       title="{{ trans('mant_departamentos.tt_ver_mas')}}" >
+                       title="{{ trans('mant_categorias.tt_ver_mas')}}" >
                         <img src="{{ url('img/ic_visibility_black_18dp_1x.png') }}"/>
                     </a> |
                     <a class="iconos"
+                       @if( count( $categoria->assets ) == 0 )
                        href="javascript:confirmarEliminar(
-                               '{{ url('eliminarUsuario/'.$categoria->id) }}',
-                               '{{ $categoria->first_name }}',
-                               '{{ trans('mant_departamentos.jal_confirm_elmnar_user')}}'
+                               '{{ url('eliminarCategorias/'.$categoria->id) }}',
+                               '{{ $categoria->name  }}',
+                               '{{ trans('mant_categorias.jal_confirm_elmnar')}}'
                                )"
+                       @else
+                       href="javascript:alert('{{ trans('mant_categorias.jal_confirm_elmnar_no')}}')"
+                       @endif
                        data-toggle="tooltip"
-                       title="{{ trans('mant_departamentos.tt_Eliminar')}}">
+                       title="{{ trans('mant_categorias.tt_Eliminar')}}">
                         <img src="{{ url('img/ic_close_black_18dp_1x.png') }}"/>
                     </a>
 
