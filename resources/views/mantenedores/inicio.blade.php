@@ -26,7 +26,7 @@
         </li>
         <li>Departamentos
             <ul>
-                <li><a href="{{ route('listarDepartamentos') }} ">Mantenedor de departamentos           </a></li>
+                <li><a href="{{ route('listarDepartamentos') }}     ">Mantenedor de departamentos           </a></li>
                 <li><a href="{{ route('listarNivelDepartamento') }} ">Mantenedor de niveles de departamentos</a></li>
             </ul>
         </li>
@@ -36,6 +36,7 @@
         <li><a href="{{ route('listarCiudad') }}                  ">Mantenedor de roles de ciudades          </a></li>
         <li><a href="{{ route('listarOficina') }}                 ">Mantenedor de oficinas                   </a></li>
         <li><a href="{{ route('listarEmpresa') }}                 ">Mantenedor de empresas                   </a></li>
+        <li><a href="{{ route('listarProveedor') }}               ">Mantenedor de Proveedores                </a></li>
     </ul>
 
 @endsection

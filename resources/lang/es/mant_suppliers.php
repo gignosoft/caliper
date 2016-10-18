@@ -49,42 +49,68 @@ return[
 
     'ph_name'                   => 'Ingrese el nombre.',
 
-    'tp_datos_g1'			    => 'Datos del rubro',
+    'tp_datos_g1'			    => 'Datos del proveedor',
 
     /* Listar */
-    'tit_listar'				=> 'Mantenedor de rubros o giros.',
+    'tit_listar'				=> 'Mantenedor de Proveedores.',
 
     'th_name'                   => 'Nombre',
+    'th_company_id'             => 'Empresa',
     'th_accion'					=> 'Acción',
+
+    'isd_level'                 => 'Todas',
 
     'msj_no_encontrado'         => 'No hay resultados.',
 
 
 
-    'jal_confirm_elmnar'        => 'Se eliminará el rubro: ',
+    'jal_confirm_elmnar'        => 'Se eliminará el proveedor: ',
 
     /* Insertar - actualizar */
-    'tit_insertar'				=> 'Ingresar nuevo rubro.',
-    'tit_actualizar'			=> 'Actualizar rubro.',
+    'tit_insertar'				=> 'Ingresar nuevo proveedor.',
+    'tit_actualizar'			=> 'Actualizar proveedor.',
+
+    'isd_city'                  => 'Seleccione un país para cargar las ciudades.',
+
 
     'msj_name_required'         => 'El nombre es requerido',
-    'msj_ingresado'             => 'El rubro ha sido ingresado exitosamente',
-    'msj_actualizado'           => 'El rubro ha sido actualizado exitosamente',
+    'msj_phone_required'        => 'El teléfono es requerido',
+    'msj_email_required'        => 'El correo electrónico es requerido',
+    'msj_company_id_required'   => 'El la empresa es requerida',
+    'msj_city_id_required'      => 'La ciudad es requerida',
+
+
+    'msj_ingresado'             => 'El proveedor ha sido ingresado exitosamente',
+    'msj_actualizado'           => 'El proveedor ha sido actualizado exitosamente',
+
+    'ph_phone'                   => 'Ingrese un número telefónico.',
+    'ph_email'                   => 'Ingrese un correo electrónico.',
+    'ph_description'             => 'Ingrese una descripción.',
 
     'l_name'					=> 'Nombre',
+    'l_company_id'				=> 'Empresa',
+    'l_country'				    => 'País',
+    'l_city_id'				    => 'Ciudad',
+    'l_email'				    => 'Email',
+    'l_phone'				    => 'Teléfono',
+    'l_description'				=> 'Descripción',
 
     /* ver */
-    'tp_ver'				=> 'Detalles del rubro.',
+    'tp_ver'				=> 'Detalles del proveedor.',
 
     'lvm_nombre'            => 'Nombre',
-    'lvm_empresas'          => 'Empresas',
+    'lvm_assets'            => 'Activos',
+    'lvm_phone'             => 'Teléfono',
+    'lvm_email'             => 'Correo electrónico',
+    'lvm_country'           => 'País',
+    'lvm_city'              => 'Ciudad',
 
-    'msj_sin'               => 'Sin empresas asociadas.',
+    'msj_sin_1'             => 'Sin activos asociados.',
 
-    'jal_confirm_elmnar'    => 'Se eliminará el rubro: ',
-    'jal_confirm_elmnar_no' => 'El rubro no se puede eliminar ya que posee empresas asociadas',
+    'jal_confirm_elmnar'    => 'Se eliminará el proveedor: ',
+    'jal_confirm_elmnar_no' => 'El proveedor no se puede eliminar ya que posee activos asociados',
 
-    'msj_eliminado_1'       => 'El rubro: ',
+    'msj_eliminado_1'       => 'El proveedor: ',
     'msj_eliminado_2'       => ', ha sido correctamente eliminado.',
 
 ];
