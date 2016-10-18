@@ -46,6 +46,7 @@
             <hr/>
             <br/>
             <a class="title" href="{{  url('mantenedores') }}">Mantenedores</a>
+            <a class="title" href="{{  url('gestiones') }}">Gestiones</a>
         </div>
 
     </body>

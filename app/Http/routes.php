@@ -46,6 +46,26 @@ Route::group(['middleware' => ['web']], function () {
             return view('mantenedores/inicio');
         });
 
+        Route::get('gestiones', function () {
+            return view('gestiones/inicio');
+        });
+
+
+/*|--------------------------------------------------------------------------
+|
+                            GESTIONES
+|
+|------------------------------------------------------------------------*/
+
+        /*|--------------------------------------------------------------------------
+        | ASIGNAR ACTIVO
+        |------------------------------------------------------------------------*/
+
+        Route::get('asignarActivo',
+            'Gestiones\AsignarActivo@index')
+            ->name('asignarActivo');
+
+
 
         /*|--------------------------------------------------------------------------
         | MANTENEDOR DE USUARIOS
@@ -644,7 +664,7 @@ Route::get('/asignarActivoIndex', function () {
     return view('prototypes/asignarActivo/index');
 });
 
-Route::get('/asignarActivo', function () {
+Route::get('/asignarActivo2', function () {
     return view('prototypes/asignarActivo/asignarActivo');
 });
 // asignación de activos <<
