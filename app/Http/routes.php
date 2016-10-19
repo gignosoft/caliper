@@ -65,6 +65,14 @@ Route::group(['middleware' => ['web']], function () {
             'Gestiones\AsignarActivo@index')
             ->name('asignarActivo');
 
+        Route::post('asignarActivo',
+            'Gestiones\AsignarActivo@search')
+            ->name('asignarActivo');
+
+        Route::get('crearActivo/{id}',
+            'Gestiones\AsignarActivo@create')
+            ->name('crearActivo');
+
 
 
         /*|--------------------------------------------------------------------------

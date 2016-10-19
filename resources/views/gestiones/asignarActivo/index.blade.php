@@ -26,16 +26,64 @@
                     <tr>
                         <th>{{ 'Rut'      }}</th>
                         <th>{{ 'Nombre'   }}</th>
+                        <th>{{ 'Apellido'   }}</th>
                         <th>{{ 'Acción'   }}</th>
 
                     </tr>
                     </thead>
                     <tbody>
-                    @yield('tbody_table')
+                    @if( count( $usuarios ) == 0 )
+                        <tr>
+                            <td colspan="4">{{ 'Sin resultados' }}</td>
+                            <td> <button type="button" class="btn btn-primary  "
+                                         onclick='window.location ="{{ url("asignarActivo") }}"'
+                                >{{ 'Volver' }}
+                                </button></td>
+                        </tr>
+                    @else
+                        <form action={{ url("asignarActivo") }} method="post">
+                            {{ csrf_field() }}
+                            <tr>
+                                <td>
+                                    <input type="text" class="form-control" name="identifier" id="identifier"
+                                           placeholder="{{ trans('mantusuarios.ph_identifier') }}">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" name="first_name" id="first_name"
+                                           placeholder="{{ trans('mantusuarios.ph_first_name') }}">
+                                </td>
+
+                                <td>
+                                    <input type="text" class="form-control" name="last_name" id="last_name"
+                                           placeholder="{{ trans('mantusuarios.ph_last_name') }}">
+                                </td>
+                                <td>
+                                    <button type="submit" class="btn btn-primary ">{{ trans('mantusuarios.btn_buscar') }}</button>
+                                </td>
+                            </tr>
+                        </form>
+                        @foreach($usuarios as $usuario)
+                            <tr>
+                                <td>{{ $usuario->identifier                                                  }}</td>
+                                <td>{{ $usuario->first_name                                                  }}</td>
+                                <td>{{ $usuario->last_name                                                   }}</td>
+
+                                <td>
+                                    <button class="btn btn-default "
+                                            onclick="window.location = '{{ url('crearActivo/'.$usuario->id  ) }}' "
+                                             > {{ 'Assignar' }}
+
+                                    </button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
                     </tbody>
                 </table>
 
-                @yield('paginador')
+                @if($buscar == 'false')
+                    {!! $usuarios->render() !!}
+                @endif
 
             </div>
 

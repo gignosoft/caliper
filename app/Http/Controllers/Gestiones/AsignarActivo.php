@@ -9,6 +9,8 @@ use App\Models\User;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use Illuminate\Support\Facades\Redirect;
+
 class AsignarActivo extends Controller
 {
     /**
@@ -19,10 +21,37 @@ class AsignarActivo extends Controller
     public function index()
     {
         //
-        $usuarios   = User::all();
+        $usuarios   = User::paginate( 5 );
         return view('gestiones.asignarActivo.index', [
-            'usuarios' => $usuarios,
+            'usuarios'  => $usuarios,
+            'buscar'    => 'false',
         ]);
+    }
+
+
+    public function search()
+    {
+        //dd( $_POST );
+        $first_name   = $_POST['first_name'];
+        $last_name    = $_POST['last_name'];
+        $identifier   = $_POST['identifier'];
+
+
+        if( $first_name == '' && $last_name == '' && $identifier == '' )
+        {
+            return Redirect::to('asignarActivo');
+        }
+
+        $usuarios = User::where('first_name', 'like', '%'.$first_name.'%')
+            ->where('last_name', 'like', '%'.$last_name.'%')
+            ->where('identifier', 'like', '%'.$identifier.'%')->get();
+
+        return view('gestiones.asignarActivo.index', [
+            'usuarios'  => $usuarios,
+            'buscar'    => 'true',
+        ]);
+
+
     }
 
     /**
@@ -30,9 +59,14 @@ class AsignarActivo extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create( $id )
     {
         //
+        $usuario = User::find( $id );
+
+        return view('gestiones.asignarActivo.create', [
+            'usuario'  => $usuario,
+        ]);
     }
 
     /**
