@@ -73,6 +73,11 @@ Route::group(['middleware' => ['web']], function () {
             'Gestiones\AsignarActivo@create')
             ->name('crearActivo');
 
+        // para el combo de activos
+        Route::get('cargaActivo/{id}',
+            'Gestiones\AsignarActivo@cargaActivo')
+            ->name('cargaActivo');
+
 
 
         /*|--------------------------------------------------------------------------

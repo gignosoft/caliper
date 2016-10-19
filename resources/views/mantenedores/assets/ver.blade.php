@@ -37,7 +37,7 @@
 
     <p class="row">
         <div class="col-xs-3">{{ trans( 'mantActivos.lvm_available' ) }}</div>
-        <div class="col-xs-9">: {{ $disponible }}</div>
+        <div class="col-xs-9">: {{ $disponible.'('.$activo->available.') borrar' }}</div>
     </p>
 
     <p class="row">

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Gestiones;
 
+
 use Illuminate\Http\Request;
 
 use App\Models\User;
+use App\Models\Category;
+use App\Models\Asset;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -13,6 +16,17 @@ use Illuminate\Support\Facades\Redirect;
 
 class AsignarActivo extends Controller
 {
+    public function cargaActivo($id)
+    {
+        $activos = Asset::where('category_id', '=', $id)
+            ->where('available', '=', '0')->get();
+
+
+        return view('mantenedores/trozosHtml/dinamicAsset', [
+            'activos' => $activos,
+        ]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -62,12 +76,16 @@ class AsignarActivo extends Controller
     public function create( $id )
     {
         //
-        $usuario = User::find( $id );
+        $usuario    = User::find( $id );
+        $categorias = Category::all();
 
         return view('gestiones.asignarActivo.create', [
-            'usuario'  => $usuario,
+            'usuario'       => $usuario,
+            'categorias'    => $categorias,
         ]);
     }
+
+
 
     /**
      * Store a newly created resource in storage.
