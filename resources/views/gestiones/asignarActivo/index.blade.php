@@ -1,7 +1,7 @@
 @extends('layouts.principal')
 
 @section('titulo')
-    {{ 'Asignar activo' }}
+    {{ trans( 'asig_activo.tit_asgnar_activo' ) }}
 @endsection
 
 @section('contenido')
@@ -12,7 +12,7 @@
         <div class="panel panel-info">
             <div class="panel-heading ">
                 <div class="row">
-                    <h3 class="col-xs-12"> {{ 'Asignar activo' }} </h3>
+                    <h3 class="col-xs-12"> {{ trans( 'asig_activo.tit_asgnar_activo' ) }} </h3>
                 </div>
 
             </div>
@@ -24,21 +24,22 @@
                 <table class="table table-striped col-sm-6 col-xs-12">
                     <thead>
                     <tr>
-                        <th>{{ 'Rut'      }}</th>
-                        <th>{{ 'Nombre'   }}</th>
-                        <th>{{ 'Apellido'   }}</th>
-                        <th>{{ 'Acción'   }}</th>
+                        <th>{{ trans( 'asig_activo.th_identifier' ) }}</th>
+                        <th>{{ trans( 'asig_activo.th_first_name' ) }}</th>
+                        <th>{{ trans( 'asig_activo.th_last_name' )  }}</th>
+                        <th>{{ trans( 'asig_activo.th_action' )     }}</th>
 
                     </tr>
                     </thead>
                     <tbody>
                     @if( count( $usuarios ) == 0 )
                         <tr>
-                            <td colspan="4">{{ 'Sin resultados' }}</td>
+                            <td colspan="4">{{ trans( 'asig_activo.msj_sinResultados' ) }}</td>
                             <td> <button type="button" class="btn btn-primary  "
-                                         onclick='window.location ="{{ url("asignarActivo") }}"'
-                                >{{ 'Volver' }}
-                                </button></td>
+                                         onclick='window.location ="{{ url("asignarActivo") }}"'>
+                                        {{ trans( 'asig_activo.btn_volver' ) }}
+                                </button>
+                            </td>
                         </tr>
                     @else
                         <form action={{ url("asignarActivo") }} method="post">
@@ -46,33 +47,32 @@
                             <tr>
                                 <td>
                                     <input type="text" class="form-control" name="identifier" id="identifier"
-                                           placeholder="{{ trans('mantusuarios.ph_identifier') }}">
+                                           placeholder="{{ trans('asig_activo.ph_identifier') }}">
                                 </td>
                                 <td>
                                     <input type="text" class="form-control" name="first_name" id="first_name"
-                                           placeholder="{{ trans('mantusuarios.ph_first_name') }}">
+                                           placeholder="{{ trans('asig_activo.ph_first_name') }}">
                                 </td>
 
                                 <td>
                                     <input type="text" class="form-control" name="last_name" id="last_name"
-                                           placeholder="{{ trans('mantusuarios.ph_last_name') }}">
+                                           placeholder="{{ trans('asig_activo.ph_last_name') }}">
                                 </td>
                                 <td>
-                                    <button type="submit" class="btn btn-primary ">{{ trans('mantusuarios.btn_buscar') }}</button>
+                                    <button type="submit" class="btn btn-primary ">{{ trans('asig_activo.btn_buscar') }}</button>
                                 </td>
                             </tr>
                         </form>
                         @foreach($usuarios as $usuario)
                             <tr>
-                                <td>{{ $usuario->identifier                                                  }}</td>
-                                <td>{{ $usuario->first_name                                                  }}</td>
-                                <td>{{ $usuario->last_name                                                   }}</td>
+                                <td>{{ $usuario->identifier  }}</td>
+                                <td>{{ $usuario->first_name  }}</td>
+                                <td>{{ $usuario->last_name   }}</td>
 
                                 <td>
                                     <button class="btn btn-default "
-                                            onclick="window.location = '{{ url('crearActivo/'.$usuario->id  ) }}' "
-                                             > {{ 'Assignar' }}
-
+                                        onclick="window.location = '{{ url('crearActivo/'.$usuario->id  ) }}' ">
+                                        {{ trans( 'asig_activo.btn_asignar' )}}
                                     </button>
                                 </td>
                             </tr>

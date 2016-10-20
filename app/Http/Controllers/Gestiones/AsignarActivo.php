@@ -97,7 +97,15 @@ class AsignarActivo extends Controller
         //dd($_POST);
         $asset_id       = $_POST['asset_id'];
         $description    = $_POST['description'];
-        $user_id    = $_POST['user_id'];
+        $user_id        = $_POST['user_id'];
+
+        $validator = Validator::make( $request->all(), [
+            'asset_id'      => 'required',
+            'user_id'       => 'required',
+        ], [
+
+        ] );
+
 
         $asignacion = new Assignment();
 
