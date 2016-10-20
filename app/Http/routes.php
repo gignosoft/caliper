@@ -73,6 +73,10 @@ Route::group(['middleware' => ['web']], function () {
             'Gestiones\AsignarActivo@create')
             ->name('crearActivo');
 
+        Route::post('crearActivo',
+            'Gestiones\AsignarActivo@asignar')
+            ->name('crearActivo');
+
         // para el combo de activos
         Route::get('cargaActivo/{id}',
             'Gestiones\AsignarActivo@cargaActivo')
@@ -692,6 +696,22 @@ Route::get('/ingresarCompraIndex', function () {
 
 /*******************************/
 
+Route::get('nachoelocuente', function () {
+
+    $pais = \App\Models\Country::find(1);
+
+    $usuarios = $pais->cities->find(1)->users;
+
+   // dd($usuarios);
+
+    foreach ( $usuarios as $usuario )
+    {
+        echo $usuario->first_name.'<br>';
+    }
+
+
+
+});
 
 
 

@@ -8,11 +8,14 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Asset;
+use App\Models\Assignment;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Redirect;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Validator;
 
 class AsignarActivo extends Controller
 {
@@ -79,10 +82,36 @@ class AsignarActivo extends Controller
         $usuario    = User::find( $id );
         $categorias = Category::all();
 
+        $asignaciones = Assignment::where( 'user_id', '=', $usuario->id )->
+                                    where( 'state_assignment_id', '=', 1 )->get();
+
         return view('gestiones.asignarActivo.create', [
             'usuario'       => $usuario,
             'categorias'    => $categorias,
+            'asignaciones'  => $asignaciones,
         ]);
+    }
+
+    public function asignar(Request $request)
+    {
+        //dd($_POST);
+        $asset_id       = $_POST['asset_id'];
+        $description    = $_POST['description'];
+        $user_id    = $_POST['user_id'];
+
+        $asignacion = new Assignment();
+
+
+        $asignacion->description            = $description;
+        $asignacion->assigned_at            = Carbon::now();
+        $asignacion->user_id                = $user_id;
+        $asignacion->asset_id               = $asset_id;
+        $asignacion->state_assignment_id    = 1;
+
+        $asignacion->state_assignment_id    = $request->user()->identifier;
+        $asignacion->save();
+
+        return Redirect::to('crearActivo/'.$user_id);
     }
 
 
