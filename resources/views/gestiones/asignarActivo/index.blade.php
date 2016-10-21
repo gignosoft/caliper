@@ -15,6 +15,19 @@
                     <h3 class="col-xs-12"> {{ trans( 'asig_activo.tit_asgnar_activo' ) }} </h3>
                 </div>
 
+                <div class="row">
+                    <div class="col-xs-11"></div>
+
+                    <div class="btn-group col-xs-1">
+                        <button type="button"
+                                class="btn btn-primary "
+                                onclick='window.location =" {{ url('gestiones') }} "'>
+                                {{ trans( 'asig_activo.btn_salir' ) }}
+                        </button>
+                    </div>
+
+                </div>
+
             </div>
 
             <div class="panel-body">

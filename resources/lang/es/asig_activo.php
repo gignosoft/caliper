@@ -19,7 +19,7 @@
 |
 |
 */
-// trans( 'asig_activo.btn_asignar' )
+// trans( 'asig_activo.btn_eliminar' )
 // {{ trans( 'asig_activo.xxxxxxxxx' ) }}
 
 return[
@@ -30,6 +30,8 @@ return[
     'btn_volver'	=> 'Volver',
     'btn_guardar'	=> 'Guardar',
     'btn_asignar'	=> 'Asignar',
+    'btn_eliminar'	=> 'Eliminar',
+    'btn_entregar'	=> 'Entregar',
 
     // index
     'tit_asgnar_activo'         => 'Asignar activo',
@@ -46,9 +48,23 @@ return[
     'ph_identifier' => 'Ingrese el rut',
     'ph_first_name' => 'Ingrese el nombre',
     'ph_last_name'  => 'Ingrese el Apellido',
+    
+    // create
+    'tit_asgnar_activo2'    => 'Asignar activo a: ',
+    
+    'l_categoria'           => 'Categoría',
+    
+    'isd_categoria'         => 'Seleccione una categoría',
+    'isd_activo'            => 'Seleccione una categoría para cargar los activos',
+    
+    'ph_description'        => 'Ingrese un comentario',
+    
+    'th_codigo'             => 'Código',
+    'th_nombre'             => 'Nombre',
+    'th_estado'             => 'Estado',
+    'th_accion'             => 'Acción',
 
-
-
+    'msj_sin_activos'       => 'Sin activos asignados',
 
 ];
 

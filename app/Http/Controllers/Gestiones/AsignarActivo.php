@@ -81,6 +81,7 @@ class AsignarActivo extends Controller
         //
         $usuario    = User::find( $id );
         $categorias = Category::all();
+        $ahora    = Carbon::now();       
 
         $asignaciones = Assignment::where( 'user_id', '=', $usuario->id )->
                                     where( 'state_assignment_id', '=', 1 )->get();
@@ -89,6 +90,7 @@ class AsignarActivo extends Controller
             'usuario'       => $usuario,
             'categorias'    => $categorias,
             'asignaciones'  => $asignaciones,
+            'ahora'           => $ahora,
         ]);
     }
 
