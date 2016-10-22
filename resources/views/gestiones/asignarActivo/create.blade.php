@@ -54,9 +54,7 @@
 
                         <label for="comment">{{ 'Comentario' }}</label>
                         <textarea class="form-control" name="description" rows="5" id="comment"
-                                placeholder="{{ trans( 'asig_activo.ph_description' ) }}">
-
-                        {{''}}</textarea><br>
+                                placeholder="{{ trans( 'asig_activo.ph_description' ) }}"></textarea><br>
 
                         <table class="table table-striped col-xs-12">
                             <thead>
@@ -84,11 +82,15 @@
                                             @if( ( date_diff( $ahora,$asignacion->created_at )->h ) > 1  ||
                                             ( date_diff( $ahora,$asignacion->created_at )->d ) > 0 )
                                             <input type="button" class="btn btn-warning"
-                                                    onclick='window.location =" {{ url('#') }} "'
+                                                    onclick='window.location =" {{ url('entregaActivo/'.$asignacion->id) }} "'
                                                     value="{{ trans( 'asig_activo.btn_entregar' ) }}">
                                             @else
                                                 <input type="button" class="btn btn-danger"
-                                                       onclick='window.location =" {{ url('#') }} "'
+                                                       onclick="javascript:confirmarEliminar(
+                                                '{{ url('eliminarAsignacion/'.$asignacion->id) }}',
+                                                '{{ $asignacion->assets->find( $asignacion->asset_id )->name  }}',
+                                                '{{ trans('asig_activo.jal_confirm_elmnar')}}'
+                                                )"
                                                        value="{{ trans( 'asig_activo.btn_eliminar' ) }}">
                                             @endif
                                         </td>
@@ -104,8 +106,8 @@
 
                         <div class="row">
                             <div class="btn-group col-xs-3">
-                                <button type="submit" class="btn btn-success"> {{ 'Asignar' }}</button>
-                                <button type="button" class="btn btn-primary"> {{ '<< Volver' }}</button>
+                                <button type="button" onclick='window.location ="{{ url("asignarActivo") }}"' class="btn btn-primary"> {{ trans( 'asig_activo.btn_volver' ) }}</button>
+                                <button type="submit" class="btn btn-success"> {{ trans( 'asig_activo.btn_asignar' ) }}</button>
                             </div>
                         </div>
 

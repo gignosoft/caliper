@@ -16,7 +16,9 @@ class StateAssignmentTableSeeder extends Seeder
         //
         factory(StateAssignment::class,'prestamo')->create();
         factory(StateAssignment::class,'entregado')->create();
-        factory(StateAssignment::class,'mantencion')->create();
+        factory(StateAssignment::class,'entrega_2')->create();
+        factory(StateAssignment::class,'entrega_3')->create();
         factory(StateAssignment::class,'perdido')->create();
+
     }
 }

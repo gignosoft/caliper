@@ -3,7 +3,7 @@
     <option value=''>{{ trans( 'asig_activo.isd_activo' ) }}</option>
 @else
     @foreach($activos as $activo)
-        <option value='{{ $activo->id }}'>{{ $activo->name }}</option>
+        <option value='{{ $activo->id }}'>{{ $activo->name.' ('.substr ( $activo->description, 0 ,40 ).'... )' }}</option>
     @endforeach
 @endif
 </select>

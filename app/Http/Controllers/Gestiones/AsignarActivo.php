@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Category;
 use App\Models\Asset;
 use App\Models\Assignment;
+use App\Models\StateAssignment;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -100,14 +101,21 @@ class AsignarActivo extends Controller
         $asset_id       = $_POST['asset_id'];
         $description    = $_POST['description'];
         $user_id        = $_POST['user_id'];
-
         $validator = Validator::make( $request->all(), [
             'asset_id'      => 'required',
-            'user_id'       => 'required',
         ], [
-
+            'asset_id.required' => trans( 'asig_activo.msj_activo_required' ),
         ] );
 
+        if ($validator->fails()) {
+
+            return redirect('crearActivo/'.$user_id)
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $activo                 = Asset::find($asset_id);
+        $activo->available      = 1;
 
         $asignacion = new Assignment();
 
@@ -118,45 +126,31 @@ class AsignarActivo extends Controller
         $asignacion->asset_id               = $asset_id;
         $asignacion->state_assignment_id    = 1;
 
-        $asignacion->state_assignment_id    = $request->user()->identifier;
+        $asignacion->user_control           = $request->user()->identifier;
         $asignacion->save();
 
+        $request->session()->flash('alert-success',
+            trans('asig_activo.msj_asset_asignado_ok_1').$activo->name.trans('asig_activo.msj_asset_asignado_ok_2') );
+
+        $activo->save();
         return Redirect::to('crearActivo/'.$user_id);
     }
 
-
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function edit( $id )
     {
-        //
-    }
+        $asignacion = Assignment::find( $id );        
+        $usuario    = $asignacion->users->find( $asignacion->user_id );
+        $activo     = $asignacion->assets->find( $asignacion->asset_id );
+        
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        $estados    = StateAssignment::all();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return view('gestiones.asignarActivo.entregar', [
+            'asignacion' => $asignacion,
+            'usuario'    => $usuario,    
+            'activo'     => $activo,
+            'estados'    => $estados,
+        ]);
     }
 
     /**
@@ -166,19 +160,55 @@ class AsignarActivo extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        //dd( $_POST );
+        $state_assignment_id    = $_POST['state_assignment_id'];
+        $description            = $_POST['description'];
+        $id                     = $_POST['id'];
+
+        $user_id                = $_POST['user_id'];
+
+        $asignacion             = Assignment::find( $id );
+        $activo                 = Asset::find( $asignacion->asset_id );
+
+        $asignacion->state_assignment_id    = $state_assignment_id;
+        $asignacion->description            = $description;
+        $asignacion->returned_at            = Carbon::now();
+
+        $activo->state_asset_id     = 2;
+        if( $state_assignment_id == 4 || $state_assignment_id == 5 ) // el estado del activo depende de la entrega
+        {
+            $activo->available          = 1; // disponible
+        }else{
+            $activo->available          = 0; // no disponible
+        }
+        $activo->save();
+
+        $asignacion->user_control           = $request->user()->identifier;
+
+        $asignacion->save();
+
+        $request->session()->flash('alert-success',
+            trans( 'asig_activo.msj_entrega_1' ).$activo->name.trans( 'asig_activo.msj_entrega_2' ) );
+        return Redirect::to('crearActivo/'.$user_id);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        //
+        $asignacion = Assignment::find( $id );
+        $user_id    = $asignacion->user_id;
+        
+        $activo     = Asset::find( $asignacion->asset_id );
+        
+        $mensaje    = trans('asig_activo.msj_elimina_1');
+        $mensaje    .= $activo->name;
+        $mensaje    .= trans('asig_activo.msj_elimina_2');
+
+        $asignacion->delete();
+
+        $request->session()->flash( 'alert-success', $mensaje);
+        return Redirect::to('crearActivo/'.$user_id);
     }
+
 }

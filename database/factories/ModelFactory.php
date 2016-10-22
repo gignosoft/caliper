@@ -207,24 +207,34 @@
 
     $factory->defineAs(\App\Models\StateAssignment::class,'entregado', function (Faker\Generator $faker){
         return [
-            'name'          => 'Entregado',
-            'user_control'  => 'seeder',
-        ];
-    });
-
-    $factory->defineAs(\App\Models\StateAssignment::class,'mantencion', function (Faker\Generator $faker){
-        return [
-            'name'          => 'En mantención',
+            'name'          => 'Entregado en perfectas condiciones',
             'user_control'  => 'seeder',
         ];
     });
 
     $factory->defineAs(\App\Models\StateAssignment::class,'perdido', function (Faker\Generator $faker){
         return [
-            'name'          => 'Perdido',
+            'name'          => 'extraviado',
             'user_control'  => 'seeder',
         ];
     });
+
+$factory->defineAs(\App\Models\StateAssignment::class,'entrega_2', function (Faker\Generator $faker){
+    return [
+        'name'          => 'Entregado con detalles',
+        'user_control'  => 'seeder',
+    ];
+});
+
+$factory->defineAs(\App\Models\StateAssignment::class,'entrega_3', function (Faker\Generator $faker){
+    return [
+        'name'          => 'Entregado sin funcionamiento',
+        'user_control'  => 'seeder',
+    ];
+});
+
+
+
 /*--------------------------------------------------------------------------
 | Office Factory
 |-----------------------------------------------------------------------*/

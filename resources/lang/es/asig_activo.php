@@ -19,7 +19,7 @@
 |
 |
 */
-// trans( 'asig_activo.btn_eliminar' )
+// trans( 'asig_activo.l_estado_entrega' )
 // {{ trans( 'asig_activo.xxxxxxxxx' ) }}
 
 return[
@@ -27,7 +27,7 @@ return[
     'btn_buscar'	=> 'Buscar',
     'btn_nuevo'		=> 'Nuevo',
     'btn_salir'		=> 'Salir',
-    'btn_volver'	=> 'Volver',
+    'btn_volver'	=> '<< Volver',
     'btn_guardar'	=> 'Guardar',
     'btn_asignar'	=> 'Asignar',
     'btn_eliminar'	=> 'Eliminar',
@@ -53,6 +53,7 @@ return[
     'tit_asgnar_activo2'    => 'Asignar activo a: ',
     
     'l_categoria'           => 'Categoría',
+    'l_estado_entrega'           => 'Estado de la entrega',
     
     'isd_categoria'         => 'Seleccione una categoría',
     'isd_activo'            => 'Seleccione una categoría para cargar los activos',
@@ -65,6 +66,22 @@ return[
     'th_accion'             => 'Acción',
 
     'msj_sin_activos'       => 'Sin activos asignados',
+    
+    'msj_activo_required'   => 'Seleccione un activo',
+
+    'msj_asset_asignado_ok_1' => 'El activo: ',
+    'msj_asset_asignado_ok_2' => ', ha sido asignado exitosamente.',
+
+    'msj_elimina_1' => 'La asignación del activo: ',
+    'msj_elimina_2' => ', ha sido eliminada exitosamente.',
+
+    'msj_entrega' => ', entrega el activo: ',
+
+    'msj_entrega_1' => 'La entrga del activo: ',
+    'msj_entrega_2' => ', ha sido guardada correctamente' ,
+
+    'jal_confirm_elmnar' => 'Se elinará la asignación del activo: ',
+
 
 ];
 

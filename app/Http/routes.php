@@ -75,7 +75,19 @@ Route::group(['middleware' => ['web']], function () {
 
         Route::post('crearActivo',
             'Gestiones\AsignarActivo@asignar')
-            ->name('crearActivo');
+            ->name('crearActivo');        
+        
+        Route::get('eliminarAsignacion/{id}',
+            'Gestiones\AsignarActivo@destroy')
+            ->name('eliminarAsignacion');
+
+        Route::get('entregaActivo/{id}',
+            'Gestiones\AsignarActivo@edit')
+            ->name('entregaActivo');
+
+        Route::post('entregaActivo',
+            'Gestiones\AsignarActivo@update')
+            ->name('entregaActivo');
 
         // para el combo de activos
         Route::get('cargaActivo/{id}',
