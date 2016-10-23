@@ -256,8 +256,6 @@ $factory->defineAs(\App\Models\StateAssignment::class,'entrega_3', function (Fak
         $unit_price = rand(1111,9999);
         return [
             'date'              => $faker->dateTime,
-            'quantity'          => 1,
-            'unit_price'        => $unit_price,
             'total'             => $unit_price,
 
             'user_control'  => 'seeder',

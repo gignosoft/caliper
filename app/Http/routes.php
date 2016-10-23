@@ -56,6 +56,16 @@ Route::group(['middleware' => ['web']], function () {
                             GESTIONES
 |
 |------------------------------------------------------------------------*/
+        /*|--------------------------------------------------------------------------
+        | INGRESO DE COMPRA
+        |------------------------------------------------------------------------*/
+        Route::get('ingresarCompra/{codigo}',
+            'Gestiones\ingresoDeCompra@index')
+            ->name('ingresarCompra');
+
+        Route::post('ingresarCompra',
+            'Gestiones\ingresoDeCompra@create')
+            ->name('ingresarCompra');
 
         /*|--------------------------------------------------------------------------
         | ASIGNAR ACTIVO

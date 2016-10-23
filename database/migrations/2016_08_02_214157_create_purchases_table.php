@@ -17,8 +17,6 @@ class CreatePurchasesTable extends Migration
 
             $table->increments('id');
             $table->dateTime('date');
-            $table->integer('quantity');
-            $table->double('unit_price');
             $table->double('total');
 
             $table->string('user_control');
