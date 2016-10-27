@@ -29,8 +29,8 @@
 
     <title> @yield('titulo')</title>
 </head>
-<body class="body">
-<nav class="navbar navbar-default">
+<body class="body" >
+<nav class="navbar navbar-default" style="width: 100%;">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -60,10 +60,10 @@
     </div>
 </nav>
 
-<div class="container">
+<p>
 
-<div class="row">
-    <div class="col-xs-3">
+<div class="row" style="width: 1200px; ">
+    <div class="col-xs-3" style="width: 300px; ">
         <div class="panel-group" id="accordion">
 
             <!--PANEL UNO-->
@@ -215,16 +215,13 @@
 
 
 
-
-
-
-<div class="col-xs-9">
+<div class="col-xs-3" style="width: 600px; float: left;">
     @yield('contenido')
 </div>
 
 </div>
 
-</div>
+</p>
 
 </body>
 </html>
