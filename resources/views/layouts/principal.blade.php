@@ -16,10 +16,25 @@
         });
     </script>
 
+    <style >
+        .body{
+            background-repeat: no-repeat;
+            background-position: center;
+            background-image: url(img/fondo6.gif);
+            background-attachment: fixed;
+
+        }
+
+    </style>
+
     <title> @yield('titulo')</title>
 </head>
-<body>
-<nav class="navbar navbar-default">
+
+<body class="body">
+
+<div class="r">
+
+    <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -49,7 +64,169 @@
     </div>
 </nav>
 
-@yield('contenido')
+    <div class="row">
+    <div class="col-xs-3">
+        <div class="panel-group" id="accordion">
+
+            <!--PANEL UNO-->
+            <!--PANEL 1-->
+            <div class="panel panel-default">
+
+                <a data-toggle="collapse" data-parent="#accordion" href="#panel_1">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+
+                            USUARIOS
+
+                        </h4>
+                    </div>
+                </a>
+                <div id="panel_1" class="panel-collapse collapse">
+                    <div class="panel-body">
+
+                        <ul>
+                            <li>
+                                <a href="{{ route('listarUsuario') }}">
+                                    Mantenedor de usuarios
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{{ route('listarRol') }}">
+                                    Mantenedor de roles de usuario
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{{ route('listarCargo') }}">
+                                    Mantenedor de cargos
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{{ route('listarNivelCargo') }}">
+                                    Mantenedor de niveles de cargos
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{{ route('listarDepartamentos') }}">
+                                    Mantenedor de departamentos
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{{ route('listarNivelDepartamento') }} ">
+                                    Mantenedor de niveles de departamentos
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--FIN PANEL 1-->
+
+            <!--PANEL 2-->
+            <div class="panel panel-default">
+
+                <a data-toggle="collapse" data-parent="#accordion" href="#panel_2">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            ACTIVOS
+                        </h4>
+                    </div>
+                </a>
+                <div id="panel_2" class="panel-collapse collapse">
+                    <div class="panel-body">
+
+                        <ul>
+                            <li>
+                                <a href="{{ route('listarActivo') }}">
+                                    Mantenedor de activos
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('listarCategorias') }}">
+                                    Mantenedor de categorias
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('listarEstadoActivo') }}">
+                                    Mantenedor de estados de activos
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--FIN PANEL 2-->
+            <!--PANEL 3-->
+            <div class="panel panel-default">
+
+                <a data-toggle="collapse" data-parent="#accordion" href="#panel_3">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            OTROS
+                        </h4>
+                    </div>
+                </a>
+                <div id="panel_3" class="panel-collapse collapse">
+                    <div class="panel-body">
+
+                        <ul>
+                            <li>
+                                <a href="{{ route('listarRubro') }}">
+                                    Mantenedor de rubro de la empresa
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('listarEstadoAsignacion') }}">
+                                    Mantenedor de estado de asignaciones
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('listarCiudad') }}">
+                                    Mantenedor de ciudades
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('listarOficina') }}">
+                                    Mantenedor de oficinas
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('listarEmpresa') }}">
+                                    Mantenedor de empresas
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('listarProveedor') }} ">
+                                    Mantenedor de Proveedores
+                                </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--FIN PANEL 3-->
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+<div class="col-xs-9">
+    @yield('contenido')
+</div>
+
+</div>
+
+</div>
 
 </body>
 </html>

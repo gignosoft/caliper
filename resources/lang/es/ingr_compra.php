@@ -19,69 +19,36 @@
 |
 |
 */
-// trans( 'asig_activo.l_estado_entrega' )
-// {{ trans( 'asig_activo.xxxxxxxxx' ) }}
-
+// trans( 'ingr_compra.msj_ingresado_1' )
+// {{ trans( 'ingr_compra.xxxxxxxxx' ) }}
 return[
+    'tit_ingresar_compra'           => 'Asignar activo',
+    'btn_eliminar'	                => 'Eliminar',
+    'btn_salir'		                => 'Salir',
+    'btn_agregar'		            => 'Agregar',
 
-    'btn_buscar'	=> 'Buscar',
-    'btn_nuevo'		=> 'Nuevo',
-    'btn_salir'		=> 'Salir',
-    'btn_volver'	=> '<< Volver',
-    'btn_guardar'	=> 'Guardar',
-    'btn_asignar'	=> 'Asignar',
-    'btn_eliminar'	=> 'Eliminar',
-    'btn_entregar'	=> 'Entregar',
-
-    // index
-    'tit_asgnar_activo'         => 'Asignar activo',
-
-    'tp_asgnar_activo'          => 'Asignar activo',
-
-    'th_identifier' => 'Rut',
-    'th_first_name' => 'Nombre',
-    'th_last_name'  => 'Apellido',
-    'th_action'     => 'Accion',
-
-    'msj_sinResultados' => 'Sin resultados',
-
-    'ph_identifier' => 'Ingrese el rut',
-    'ph_first_name' => 'Ingrese el nombre',
-    'ph_last_name'  => 'Ingrese el Apellido',
-
-    // create
-    'tit_asgnar_activo2'    => 'Asignar activo a: ',
-
-    'l_categoria'           => 'Categoría',
-    'l_estado_entrega'           => 'Estado de la entrega',
-
+    'tp_compra_n'                   => 'Compra Nº:',
     'isd_categoria'         => 'Seleccione una categoría',
-    'isd_activo'            => 'Seleccione una categoría para cargar los activos',
+    'isd_proveedor'         => 'Seleccione un proveedor',
+    'l_categoria'           => 'Categoría',
+    'l_proveedor'           => 'Proveedor',
+    'l_nombre_activo'       => 'Nombre del Activo',
+    'l_precio_activo'       => 'Precio del activo',
+    'l_descripcion'         => 'Descripción',
 
-    'ph_description'        => 'Ingrese un comentario',
+    'ph_nombre_activo'      => 'ingrese nombre activo',
+    'ph_descipcion_activo'  => 'Ingrese la descripción del activo',
 
     'th_codigo'             => 'Código',
     'th_nombre'             => 'Nombre',
-    'th_estado'             => 'Estado',
+    'th_precio'             => 'Precio',
     'th_accion'             => 'Acción',
+    'jal_confirm_elmnar'    => 'Se eliminará el activo: ',
 
-    'msj_sin_activos'       => 'Sin activos asignados',
+    'msj_eliminado_1'       => 'El activo: ',
+    'msj_eliminado_2'       => ', ha sido correctamente eliminado. ',
 
-    'msj_activo_required'   => 'Seleccione un activo',
-
-    'msj_asset_asignado_ok_1' => 'El activo: ',
-    'msj_asset_asignado_ok_2' => ', ha sido asignado exitosamente.',
-
-    'msj_elimina_1' => 'La asignación del activo: ',
-    'msj_elimina_2' => ', ha sido eliminada exitosamente.',
-
-    'msj_entrega' => ', entrega el activo: ',
-
-    'msj_entrega_1' => 'La entrga del activo: ',
-    'msj_entrega_2' => ', ha sido guardada correctamente' ,
-
-    'jal_confirm_elmnar' => 'Se elinará la asignación del activo: ',
-
+    'msj_ingresado_1'       => 'El activo: ',
+    'msj_ingresado_2'       => ', ha sido correctamente ingresado. ',
 
 ];
-

@@ -65,7 +65,11 @@ Route::group(['middleware' => ['web']], function () {
 
         Route::post('ingresarCompra',
             'Gestiones\ingresoDeCompra@create')
-            ->name('ingresarCompra');
+            ->name('ingresarCompra');        
+        
+        Route::get('eliminarActivo/{id}',
+            'Gestiones\ingresoDeCompra@destroy')
+            ->name('eliminarActivo');
 
         /*|--------------------------------------------------------------------------
         | ASIGNAR ACTIVO

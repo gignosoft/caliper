@@ -71,7 +71,7 @@ class ingresoDeCompra extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create( Request $request )
     {
         //
         //dd($_POST);
@@ -100,57 +100,18 @@ class ingresoDeCompra extends Controller
         $activo->purchase_id    = $purchase_id;
         $activo->category_id    = $category_id;
 
-
         $activo->save();
 
+        $mensaje    = trans( 'ingr_compra.msj_ingresado_1' ).
+            $activo->name.
+            trans( 'ingr_compra.msj_ingresado_2');
+
+
+
+        $request->session()->flash( 'alert-success', $mensaje );
         return Redirect::to('ingresarCompra/'.$purchase_id);
 
 
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     /**
@@ -159,8 +120,20 @@ class ingresoDeCompra extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        //
+        $activo     = Asset::find( $id );
+
+        $id_compra  = $activo->purchase_id;
+
+        $mensaje    = trans( 'ingr_compra.msj_eliminado_1').
+            $activo->name.
+            trans( 'ingr_compra.msj_eliminado_2');
+
+        $activo->delete();
+
+        $request->session()->flash('alert-success', $mensaje);
+        return Redirect::to( url('ingresarCompra/'.$id_compra) );
     }
+
 }

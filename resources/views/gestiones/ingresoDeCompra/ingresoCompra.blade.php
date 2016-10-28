@@ -1,17 +1,18 @@
 @extends('layouts.principal')
 
 @section('titulo')
-    {{ 'Ingreso de compra' }}
+    {{ trans( 'ingr_compra.tit_ingresar_compra' ) }}
 @endsection
 
 @section('contenido')
+    <div class="container">
     @include('layouts.mensajes')
 
     <div class="panel panel-info">
         <div class="panel-heading ">
 
             <div class="row">
-                <h3 class="col-xs-12"> {{ 'Compra Nº:'.$compra->id }} </h3>
+                <h3 class="col-xs-12"> {{ trans( 'ingr_compra.tp_compra_n' ).$compra->id }} </h3>
             </div>
 
         </div>
@@ -25,46 +26,46 @@
                 {{ csrf_field() }}
                 <input type="hidden" name="purchase_id" value="{{ $compra->id }}">
 
-                <label for="category_id">{{ trans( 'Categoría' ) }}</label>
+                <label for="category_id">{{ trans( 'ingr_compra.l_categoria' ) }}</label>
                 <select class="form-control"
                         name="category_id" id="category_id">
-                    <option value="0">{{ 'ingrese una categoría' }}</option>
+                    <option value="0">{{ trans( 'ingr_compra.isd_categoria' ) }}</option>
                     @foreach( $categorias as $categoria )
                         <option value="{{ $categoria->id }}">{{ $categoria->name }}</option>
                     @endforeach
 
                 </select><br>
 
-                <label for="supplier_id">{{ trans( 'Proveedor' ) }}</label>
+                <label for="supplier_id">{{ trans( 'ingr_compra.l_proveedor' ) }}</label>
                 <select class="form-control"
                         name="supplier_id" id="supplier_id">
-                    <option value="0">{{ 'Seleccione un proveedor' }}</option>
+                    <option value="0">{{ trans( 'ingr_compra.isd_proveedor' ) }}</option>
                     @foreach( $proveedores as $proveedor )
                         <option value="{{ $proveedor->id }}">{{ $proveedor->name }}</option>
                     @endforeach
 
                 </select><br>
 
-                <label for="asset_name">{{ 'Nombre del Activo'  }}</label>
+                <label for="asset_name">{{ trans( 'ingr_compra.l_nombre_activo' )  }}</label>
                 <input type="text" class="form-control" name="asset_name" id="asset_name" value=""
-                       placeholder="{{ 'ingrese nombre activo' }}"><br>
+                       placeholder="{{ trans( 'ingr_compra.ph_nombre_activo' ) }}"><br>
 
-                <label for="asset_price">{{ 'Precio del activo'  }}</label>
+                <label for="asset_price">{{ trans( 'ingr_compra.l_precio_activo' )  }}</label>
                 <input type="number" class="form-control" name="asset_price" id="asset_price" value=""
                        ><br>
 
 
-                <label for="comment">{{ 'Descripción' }}</label>
+                <label for="comment">{{ trans( 'ingr_compra.l_descripcion' ) }}</label>
                         <textarea class="form-control" name="description" rows="5" id="comment"
-                                  placeholder="{{ trans( 'Ingrese la descripción del activo' ) }}"></textarea><br>
+                                  placeholder="{{ trans( 'ingr_compra.ph_descipcion_activo' ) }}"></textarea><br>
 
                 <table class="table table-striped col-xs-12">
                     <thead>
                     <tr>
-                        <th class="col-xs-2">{{ 'Código'   }}</th>
-                        <th class="col-xs-4">{{ 'Nombre'   }}</th>
-                        <th class="col-xs-3">{{ 'Precio'   }}</th>
-                        <th class="col-xs-3">{{ 'Acción'   }}</th>
+                        <th class="col-xs-2">{{ trans( 'ingr_compra.th_codigo' ) }}</th>
+                        <th class="col-xs-4">{{ trans( 'ingr_compra.th_nombre' ) }}</th>
+                        <th class="col-xs-3">{{ trans( 'ingr_compra.th_precio' ) }}</th>
+                        <th class="col-xs-3">{{ trans( 'ingr_compra.th_accion' ) }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -79,7 +80,15 @@
                                 <td>{{ $activo->code }} </td>
                                 <td>{{ $activo->name }} </td>
                                 <td>{{ $activo->price }}</td>
-                                <td>{{ 'accion' }}      </td>
+                                <td>
+                                    <input type="button" class="btn btn-danger"
+                                           onclick="javascript:confirmarEliminar(
+                                                   '{{ url('eliminarActivo/'.$activo->id) }}',
+                                                   '{{ $activo->name  }}',
+                                                   '{{ trans( 'ingr_compra.jal_confirm_elmnar' )}}'
+                                                   )"
+                                           value="{{ trans( 'ingr_compra.btn_eliminar' ) }}">
+                                </td>
                             </tr>
                         @endforeach
                     @endif
@@ -92,11 +101,11 @@
                         <button type="button"
                                 onclick='window.location ="{{ url("gestiones") }}"'
                                 class="btn btn-primary">
-                            {{ trans( 'Salir' ) }}
+                            {{ trans( 'ingr_compra.btn_salir' ) }}
                         </button>
                         <button type="submit"
                                 class="btn btn-success">
-                            {{ 'Agregar' }}
+                            {{ trans( 'ingr_compra.btn_agregar' ) }}
                         </button>
                     </div>
                 </div>
