@@ -5,7 +5,3 @@
     {{ 'Mantenedores' }}
 @endsection
 
-
-@section('contenido')
-
-@endsection

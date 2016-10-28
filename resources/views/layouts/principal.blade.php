@@ -22,15 +22,14 @@
             background-position: center;
             background-image: url(img/fondo6.gif);
             background-attachment: fixed;
-
+            background-size: 100%;
         }
-
     </style>
 
     <title> @yield('titulo')</title>
 </head>
 <body class="body" >
-<nav class="navbar navbar-default" style="width: 100%;">
+<nav class="navbar navbar-default" >
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -60,13 +59,69 @@
     </div>
 </nav>
 
-<p>
 
-<div class="row" style="width: 1200px; ">
-    <div class="col-xs-3" style="width: 300px; ">
+
+<div class="row" >
+    <div class="col-xs-3" >
         <div class="panel-group" id="accordion">
 
-            <!--PANEL UNO-->
+            <!--MANTENEDORES >>-->
+            <div class="panel panel-default">
+
+                <a data-toggle="collapse" data-parent="#accordion" href="#mantenedores">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+
+                            MANTENEDORES
+
+                        </h4>
+                    </div>
+                </a>
+                <div id="mantenedores" class="panel-collapse collapse">
+                    <div class="panel-body">
+
+                        <ul>
+                            <li>
+                                <a href="{{ route('listarUsuario') }}">
+                                    Mantenedor de usuarios
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{{ route('listarRol') }}">
+                                    Mantenedor de roles de usuario
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{{ route('listarCargo') }}">
+                                    Mantenedor de cargos
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{{ route('listarNivelCargo') }}">
+                                    Mantenedor de niveles de cargos
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{{ route('listarDepartamentos') }}">
+                                    Mantenedor de departamentos
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{{ route('listarNivelDepartamento') }} ">
+                                    Mantenedor de niveles de departamentos
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+
+            <!--MANTENEDORES <<-->
             <!--PANEL 1-->
             <div class="panel panel-default">
 
@@ -215,13 +270,13 @@
 
 
 
-<div class="col-xs-3" style="width: 600px; float: left;">
-    @yield('contenido')
-</div>
+    <div class="col-xs-9" >
+        @yield('contenido')
+    </div>
 
 </div>
 
-</p>
+
 
 </body>
 </html>
