@@ -47,6 +47,8 @@ class ingresoDeCompra extends Controller
         if( $codigo == '1' )
         {
             $compra = $this->crearCompra( $request );
+            // que elimine los vacios
+
         }else{
             $compra = Purchase::find( $codigo );
         }
@@ -96,7 +98,7 @@ class ingresoDeCompra extends Controller
         $activo->code           = $code;
         $activo->price          = $price;
         $activo->supplier_id    = $supplier_id;
-        $activo->state_asset_id = 1;
+        $activo->state_asset_id = 0;
         $activo->purchase_id    = $purchase_id;
         $activo->category_id    = $category_id;
 
