@@ -122,7 +122,8 @@
                     <div class="panel-body">
                             @foreach($positions as $position)
                             <div class=" col-xs-6 ">
-                                <input type="checkbox" name="positions[]" value="{{ $position->id }}"> {{ ' '.$position->name }}
+                                <input type="checkbox" name="positions[]" value="{{ $position->id }}">
+                                {{ ' '.$position->name.' ('.$position->departments->find($position->department_id)->name.')'  }}
                             </div>
                             @endforeach
 

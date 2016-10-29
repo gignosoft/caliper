@@ -56,6 +56,9 @@
                 <td>{{ $estadoAsignacion->name }}</td>
 
                 <!-- accion -->
+                @if( $estadoAsignacion->id < 6 )
+                    <td>{{ 'sin acción' }}</td>
+                @else
 
                 <td><a class="iconos" href="{{ url('actualizarEstadoAsignacion/'.$estadoAsignacion->id) }}"
                        data-toggle="tooltip"
@@ -86,6 +89,7 @@
                     </a>
 
                 </td>
+                @endif
                 <!-- fin accion -->
             </tr>
         @endforeach

@@ -21,18 +21,12 @@ class CentroDeCostos extends Controller
      */
     public function index()
     {
-        $activos        = Asset::all();
-        $asignaciones   = Assignment::where('state_assignment_id','=','1')->get();
-        $usuarios       = User::all();
-        $oficinas       = Office::all();
+        $asignaciones   = Assignment::whereIn('state_assignment_id',[1,4,5])->get();
 
         //dd($asignaciones);
 
         return view('reportes/centro_de_costos',[
-            'activos'       => $activos,
             'asignaciones'  => $asignaciones,
-            'usuarios'      => $usuarios,
-            'oficinas'      => $oficinas,
         ]);
     }
 

@@ -21,7 +21,9 @@
         <td>Nombre de Activo</td>
         <td>Valor de Activo</td>
         <td>Usuario asignado</td>
+        <td>Estado del activo</td>
         <td>Ciudad</td>
+        <td>Cargo</td>
         <td>departamento</td>
     </tr>
     @foreach( $asignaciones as $asignacion )
@@ -36,8 +38,15 @@
             <td>{{ $asignacion->assets->find($asignacion->asset_id)->price}}</td>
             <td>{{ $asignacion->users->find($asignacion->user_id)->first_name.' '.
             $asignacion->users->find($asignacion->user_id)->last_name}} </td>
+            <td>{{ $asignacion->state_assignments->find($asignacion->state_assignment_id)->name }}</td>
             <td>{{ $asignacion->users->find($asignacion->user_id)->cities
             ->find($asignacion->users->find($asignacion->user_id)->city_id)->name}} </td>
+
+            <td>
+                @foreach( $asignacion->users->find($asignacion->user_id)->positions as $position )
+                    {{ $position->name }}.<br/>
+                @endforeach
+            </td>
 
             <td>
                 @foreach( $asignacion->users->find($asignacion->user_id)->positions as $position )

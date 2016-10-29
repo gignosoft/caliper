@@ -130,10 +130,10 @@
                             <p class="col-xs-6 ">
                                 @if( isset( $usuario->positions->find($position->id)->id ) )
                                     <input  checked type="checkbox" name="positions[]"
-                                           value="{{ $position->id }}">{{ $position->name }}
+                                           value="{{ $position->id }}">{{ $position->name.' ('.$position->departments->find($position->department_id)->name.')' }}
                                 @else
                                     <input  type="checkbox" name="positions[]"
-                                           value="{{ $position->id }}">{{ $position->name }}
+                                           value="{{ $position->id }}">{{ $position->name.' ('.$position->departments->find($position->department_id)->name.')' }}
                                 @endif
                             </p>
                         @endforeach
