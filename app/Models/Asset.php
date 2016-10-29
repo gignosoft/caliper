@@ -40,14 +40,6 @@ class Asset extends Model
     {
         return $this->hasMany(Assignment::class,'asset_id', 'id');
     }
-
-
-
-
-
-
-
-
     // | purchases | -< | assets |
     public function assets()
     {

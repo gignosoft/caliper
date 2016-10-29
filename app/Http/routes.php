@@ -77,6 +77,15 @@ Route::group(['middleware' => ['web']], function () {
         include ('rutas/mantenedor_de_empresas.php');
         include ('rutas/mantenedor_de_proveedores.php');
 
+        /*|--------------------------------------------------------------------------
+        | REPORTES
+        |------------------------------------------------------------------------*/
+
+        Route::get('centrocostos',
+            'Reportes\CentroDeCostos@index')
+            ->name('centrocostos');
+
+
     });
 
 
