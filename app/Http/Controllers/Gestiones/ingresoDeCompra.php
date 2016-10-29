@@ -28,15 +28,33 @@ class ingresoDeCompra extends Controller
 
     public function crearCompra( Request $request )
     {
-        $compra = new Purchase();
+        $user_control       = $request->user()->identifier;
+        $pre_compra         = Purchase::where('user_control', '=', $user_control )->get();
+        $maximo_pre_compra  = $pre_compra->max('id');
 
-        $compra->date    = Carbon::now();
-        $compra->total   = 0;
+        $activos            = Asset::where('purchase_id','=',$maximo_pre_compra)->get();
+       // dd(count( $activos ));
+        if( count( $activos ) > 0) // si la ultima compra tiene activos asociados no se crea otra.
+        {
+            $compra             = new Purchase();
+            $compra->date       = Carbon::now();
+            $compra->total      = 0;
 
-        $compra->user_control   = $request->user()->identifier;
-        $compra->save();
-        return $compra;
+            $compra->user_control   = $user_control;
+            $compra->save();
+            return $compra;
+
+        }else{
+
+            return Purchase::find($maximo_pre_compra);
+        }
+
+
+
+
     }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -47,8 +65,6 @@ class ingresoDeCompra extends Controller
         if( $codigo == '1' )
         {
             $compra = $this->crearCompra( $request );
-            // que elimine los vacios
-
         }else{
             $compra = Purchase::find( $codigo );
         }
@@ -93,14 +109,17 @@ class ingresoDeCompra extends Controller
 
         $activo = new Asset();
 
+        $precio = str_replace(".", "", $price);
+
         $activo->name           = $name;
         $activo->description    = $description;
         $activo->code           = $code;
-        $activo->price          = $price;
+        $activo->price          = str_replace(".", "", $precio);
         $activo->supplier_id    = $supplier_id;
-        $activo->state_asset_id = 0;
+        $activo->state_asset_id = 1;
         $activo->purchase_id    = $purchase_id;
         $activo->category_id    = $category_id;
+        $activo->available      = 0; // disponible
 
         $activo->save();
 
