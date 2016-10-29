@@ -22,7 +22,7 @@
         <td>Valor de Activo</td>
         <td>Usuario asignado</td>
         <td>Ciudad</td>
-        <td>Oficina</td>
+        <td>departamento</td>
     </tr>
     @foreach( $asignaciones as $asignacion )
         <tr>
@@ -38,18 +38,12 @@
             $asignacion->users->find($asignacion->user_id)->last_name}} </td>
             <td>{{ $asignacion->users->find($asignacion->user_id)->cities
             ->find($asignacion->users->find($asignacion->user_id)->city_id)->name}} </td>
-            <td>{{ $asignacion->users->find($asignacion->user_id)->cities
-            ->find($asignacion->users->find($asignacion->user_id)->city_id)->offices}} </td>
-            <?php
-            //$oficina = \App\Models\Office::where('id','=',4)->get();
-                foreach ( $oficinas as $oficina)
-                {
-                    echo $oficina->name.'<br/>';
-                }
 
-                dd($oficinas->find('city_id', 10));
-            ?>
-            <td>{{ $oficinas->find('city_id', 1)->name}} </td>
+            <td>
+                @foreach( $asignacion->users->find($asignacion->user_id)->positions as $position )
+                    {{ $position->departments->find( $position->department_id )->name }}.<br/>
+                @endforeach
+            </td>
         </tr>
     @endforeach
 
