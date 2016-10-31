@@ -152,7 +152,13 @@
                                         <li>
                                             <a href="{{ route('listarProveedor') }} ">
                                                 Mantenedor de Proveedores
-                                            </a></li>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('listarPais') }} ">
+                                                Mantenedor de Países
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>

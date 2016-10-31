@@ -76,6 +76,7 @@ Route::group(['middleware' => ['web']], function () {
         include ('rutas/mantenedor_de_oficinas.php');
         include ('rutas/mantenedor_de_empresas.php');
         include ('rutas/mantenedor_de_proveedores.php');
+        include ('rutas/mantenedor_de_paises.php');
 
         /*|--------------------------------------------------------------------------
         | REPORTES
