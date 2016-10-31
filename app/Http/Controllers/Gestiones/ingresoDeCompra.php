@@ -18,6 +18,53 @@ use Illuminate\Support\Facades\Validator;
 
 class ingresoDeCompra extends Controller
 {
+    /*
+     * Determina el Id de la última compra ingresada por el usuario
+     *
+     * @return int $id_max_compra
+     */
+    function idUltimaCompraDelUsuario( $user )
+    {
+        $compras = Purchase::where('user_control', '=', $user )->get();
+        if( count( $compras ) > 0 )
+        {
+            $id_max_compra  = $compras->max('id');
+        }else{
+            $id_max_compra  = 0;
+        }
+        return $id_max_compra;
+    }
+
+    /*
+     * Retorna true o false dependiendo si
+     * el usuario logueado asigno algún activo
+     * al numero de compra, con esto se evita que se cree un nuevo número
+     * de compra.
+     *
+     * @return bool
+     */
+    function debeCrearNuevaNumero(Request $request )
+    {
+        $user_control   = $request->user()->identifier;
+        $id_max_compra  = $this->idUltimaCompraDelUsuario( $user_control );
+
+        if( $id_max_compra > 0 )
+        {
+            $activos        = Asset::where('purchase_id','=',$id_max_compra)->get();
+            $num_activos    = count( $activos );
+            if( $num_activos > 0)
+            {
+                return true;
+            }else{
+                return false;
+            }
+
+        }else{
+            return true;
+        }
+
+    }
+
     function generarCodigo($longitud) {
         $key = '';
         $pattern = '1234567890abcdefghijklmnopqrstuvwxyz';
@@ -28,13 +75,11 @@ class ingresoDeCompra extends Controller
 
     public function crearCompra( Request $request )
     {
-        $user_control       = $request->user()->identifier;
-        $pre_compra         = Purchase::where('user_control', '=', $user_control )->get();
-        $maximo_pre_compra  = $pre_compra->max('id');
-
-        $activos            = Asset::where('purchase_id','=',$maximo_pre_compra)->get();
-       // dd(count( $activos ));
-        if( count( $activos ) > 0) // si la ultima compra tiene activos asociados no se crea otra.
+        $user_control   = $request->user()->identifier;
+        $id_max_compra  = $this->idUltimaCompraDelUsuario( $user_control );
+        $crear_compra   = $this->debeCrearNuevaNumero( $request );
+        //dd($crear_compra);
+        if( $crear_compra )
         {
             $compra             = new Purchase();
             $compra->date       = Carbon::now();
@@ -46,11 +91,9 @@ class ingresoDeCompra extends Controller
 
         }else{
 
-            return Purchase::find($maximo_pre_compra);
+            $compra_con_id_maximo = Purchase::find($id_max_compra);
+            return $compra_con_id_maximo;
         }
-
-
-
 
     }
 
