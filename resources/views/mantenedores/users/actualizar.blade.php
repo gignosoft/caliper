@@ -54,7 +54,7 @@
                             <label for="country_id">{{ trans('mantusuarios.isd_city') }}</label>
                             <select class="form-control" name="country_id" id="country_id"
                                     onchange="cargaComboCiudad('../cargaCiudadUsuario/'+this.value)" >
-                                <option  value="">{{ trans('mantusuarios.l_country') }}</option>
+                                <option  value="0">{{ trans('mantusuarios.l_country') }}</option>
                                 @foreach( $paises as $pais )
                                     @if( $pais->id == $id_pais)
                                         <option selected value="{{ $pais->id }}">{{ $pais->name }}</option>
