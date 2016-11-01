@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Supplier;
 use App\Models\Company;
 use App\Models\Country;
-use App\models\City;
+use App\Models\City;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;

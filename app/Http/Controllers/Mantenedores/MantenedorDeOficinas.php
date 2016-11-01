@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Models\Office;
-use App\models\City;
+use App\Models\City;
 
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;

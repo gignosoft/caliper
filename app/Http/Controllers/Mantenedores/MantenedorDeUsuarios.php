@@ -10,11 +10,13 @@ use Illuminate\Http\Request;
 use App\Models\Departments;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\models\City;
+
+use App\Models\City;
 use App\Models\User;
 use App\Models\Country;
 use App\Models\Role;
 use App\Models\Position;
+
 use App\Pivots\UserRole;
 use App\Pivots\PositionUser;
 
