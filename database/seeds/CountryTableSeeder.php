@@ -18,7 +18,7 @@ class CountryTableSeeder extends Seeder
         //
 
        // factory(Country::class, 10)->create();
-        
+
 
         factory(Country::class, 10)->create()->each(function ($country){
 
