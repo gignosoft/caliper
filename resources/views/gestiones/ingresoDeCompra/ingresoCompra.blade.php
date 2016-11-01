@@ -29,7 +29,7 @@
                 <label for="category_id">{{ trans( 'ingr_compra.l_categoria' ) }}</label>
                 <select class="form-control"
                         name="category_id" id="category_id">
-                    <option value="0">{{ trans( 'ingr_compra.isd_categoria' ) }}</option>
+                    <option value="">{{ trans( 'ingr_compra.isd_categoria' ) }}</option>
                     @foreach( $categorias as $categoria )
                         <option value="{{ $categoria->id }}">{{ $categoria->name }}</option>
                     @endforeach
@@ -39,7 +39,7 @@
                 <label for="supplier_id">{{ trans( 'ingr_compra.l_proveedor' ) }}</label>
                 <select class="form-control"
                         name="supplier_id" id="supplier_id">
-                    <option value="0">{{ trans( 'ingr_compra.isd_proveedor' ) }}</option>
+                    <option value="">{{ trans( 'ingr_compra.isd_proveedor' ) }}</option>
                     @foreach( $proveedores as $proveedor )
                         <option value="{{ $proveedor->id }}">{{ $proveedor->name }}</option>
                     @endforeach
@@ -51,8 +51,7 @@
                        placeholder="{{ trans( 'ingr_compra.ph_nombre_activo' ) }}"><br>
 
                 <label for="asset_price">{{ trans( 'ingr_compra.l_precio_activo' )  }}</label>
-                <input type="number" class="form-control" name="asset_price" id="asset_price" value=""
-                       ><br>
+                <input type="number" class="form-control" name="asset_price" id="asset_price" step=any value=""><br>
 
 
                 <label for="comment">{{ trans( 'ingr_compra.l_descripcion' ) }}</label>

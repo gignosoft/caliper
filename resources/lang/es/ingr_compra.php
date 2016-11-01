@@ -51,4 +51,9 @@ return[
     'msj_ingresado_1'       => 'El activo: ',
     'msj_ingresado_2'       => ', ha sido correctamente ingresado. ',
 
+    'msj_category_id_requerido'      => 'La categoría es requerida. ',
+    'msj_asset_name_requerido'       => 'El activo es requerido. ',
+    'msj_asset_price_requerido'      => 'El precio es requerido. ',
+    'supplier_id_id_requerido'       => 'El proveedor es requerido.. ',
+
 ];

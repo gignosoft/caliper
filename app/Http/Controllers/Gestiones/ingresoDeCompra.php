@@ -143,6 +143,27 @@ class ingresoDeCompra extends Controller
         $purchase_id    = $_POST['purchase_id'];
         $supplier_id    = $_POST['supplier_id'];
 
+        //validación
+        $validator = Validator::make($request->all(), [
+            'category_id'   => 'required',
+            'asset_name'    => 'required',
+            'asset_price'   => 'required',
+            'supplier_id'   => 'required',
+        ],$messages = [
+            'category_id.required'      => trans(   'ingr_compra.msj_category_id_requerido' ),
+            'asset_name.required'       => trans(   'ingr_compra.msj_asset_name_requerido' ),
+            'asset_price.required'      => trans(   'ingr_compra.msj_asset_price_requerido'  ),
+            'supplier_id.required'      => trans(   'ingr_compra.supplier_id_id_requerido'    ),
+        ]);
+
+
+        if ($validator->fails()) {
+
+            return redirect('ingresarCompra/'.$purchase_id.'')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
         $code           = $this->generarCodigo(10);
 
         while( count( Asset::where('code', '=', $code)->get() ) > 0 )
@@ -165,6 +186,10 @@ class ingresoDeCompra extends Controller
         $activo->available      = 0; // disponible
 
         $activo->save();
+        $compra         = Purchase::find( $purchase_id );
+        $total_actual   = $compra->total;
+        $compra->total  += $total_actual;
+        $compra->save();
 
         $mensaje    = trans( 'ingr_compra.msj_ingresado_1' ).
             $activo->name.
