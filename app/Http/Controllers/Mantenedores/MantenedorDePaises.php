@@ -65,7 +65,7 @@ class mantenedorDePaises extends Controller
         }
         // fin validaciones
         $pais = new Country();
-        $pais->name           = $name;
+        $pais->name           = strtoupper( $name );
         $pais->user_control   = $user_control;
         $pais->save();
         $request->session()->flash('alert-success', trans('mant_paises.msj_ingresado'));
@@ -121,7 +121,7 @@ class mantenedorDePaises extends Controller
         }
         // fin validaciones
         $pais = Country::find( $id );
-        $pais->name           = $name;
+        $pais->name           = strtoupper( $name );
         $pais->user_control   = $user_control;
         $pais->save();
         $request->session()->flash( 'alert-success', trans('mant_paises.msj_actualizado') );

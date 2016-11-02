@@ -113,7 +113,7 @@ class MantenedorDeCargos extends Controller
 
 
         $cargo = new Position();
-        $cargo->name                = $name;
+        $cargo->name                = strtoupper( $name );
         $cargo->levelpositions_id   = $levelpositions_id;
         $cargo->department_id       = $department_id;
         $cargo->user_control        = $request->user()->identifier;
@@ -170,7 +170,7 @@ class MantenedorDeCargos extends Controller
 
 
         $cargo = Position::find($id);
-        $cargo->name                = $name;
+        $cargo->name                = strtoupper( $name );
         $cargo->levelpositions_id   = $levelpositions_id;
         $cargo->department_id       = $department_id;
         $cargo->user_control        = $request->user()->identifier;

@@ -114,7 +114,7 @@ class MantenedorDeDepartamentos extends Controller
 
 
         $department                         = new Departments();
-        $department->name                   = $name;
+        $department->name                   = strtoupper( $name );
         $department->levelDepartments_id    = $levelDepartments_id;
 
         $department->user_control  	        = $request->user()->identifier;
@@ -198,7 +198,7 @@ class MantenedorDeDepartamentos extends Controller
 
 
         $department                         = Departments::find($id);
-        $department->name                   = $name;
+        $department->name                   = strtoupper( $name );
         $department->levelDepartments_id    = $levelDepartments_id;
 
         $department->user_control  	        = $request->user()->identifier;

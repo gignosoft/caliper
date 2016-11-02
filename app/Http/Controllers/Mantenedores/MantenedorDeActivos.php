@@ -126,8 +126,8 @@ class MantenedorDeActivos extends Controller
 
         $activo                 = Asset::find($id);
         $activo->code           = $code;
-        $activo->name           = $name;
-        $activo->description    = $description;
+        $activo->name           = strtoupper( $name );
+        $activo->description    = strtoupper( $description );
         $activo->supplier_id    = $supplier_id;
         $activo->category_id    = $category_id;
 

@@ -175,9 +175,9 @@ class ingresoDeCompra extends Controller
 
         $precio = str_replace(".", "", $price);
 
-        $activo->name           = $name;
-        $activo->description    = $description;
-        $activo->code           = $code;
+        $activo->name           = strtoupper( $name );
+        $activo->description    = strtoupper( $description );
+        $activo->code           = strtoupper( $code );
         $activo->price          = str_replace(".", "", $precio);
         $activo->supplier_id    = $supplier_id;
         $activo->state_asset_id = 1;
@@ -186,10 +186,13 @@ class ingresoDeCompra extends Controller
         $activo->available      = 0; // disponible
 
         $activo->save();
+
+        // sumando al total >>
         $compra         = Purchase::find( $purchase_id );
         $total_actual   = $compra->total;
-        $compra->total  += $total_actual;
+        $compra->total  = $total_actual + ( $activo->price );
         $compra->save();
+        // sumando al total <<
 
         $mensaje    = trans( 'ingr_compra.msj_ingresado_1' ).
             $activo->name.
@@ -214,6 +217,13 @@ class ingresoDeCompra extends Controller
         $activo     = Asset::find( $id );
 
         $id_compra  = $activo->purchase_id;
+
+        // restando del total >>
+        $compra         = Purchase::find( $id_compra );
+        $total_actual   = $compra->total;
+        $compra->total  = $total_actual - ( $activo->price );
+        $compra->save();
+        // restando del total <<
 
         $mensaje    = trans( 'ingr_compra.msj_eliminado_1').
             $activo->name.

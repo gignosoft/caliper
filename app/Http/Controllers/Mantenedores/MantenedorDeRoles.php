@@ -65,7 +65,7 @@ class MantenedorDeRoles extends Controller
         }
         // fin validaciones
         $rol = new Role();
-        $rol->name           = $name;
+        $rol->name           = strtoupper( $name );
         $rol->user_control   = $user_control;
         $rol->save();
         $request->session()->flash('alert-success', trans('mant_roles.msj_ingresado'));
@@ -121,7 +121,7 @@ class MantenedorDeRoles extends Controller
         }
         // fin validaciones
         $rol = Role::find( $id );
-        $rol->name           = $name;
+        $rol->name           = strtoupper( $name );
         $rol->user_control   = $user_control;
         $rol->save();
         $request->session()->flash( 'alert-success', trans('mant_roles.msj_actualizado') );

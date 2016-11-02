@@ -83,7 +83,7 @@ class MantenedorDeEstadoAsignaciones extends Controller
 
         $estadoAsignacion = new StateAssignment();
 
-        $estadoAsignacion->name           = $name;
+        $estadoAsignacion->name           = strtoupper( $name );
         $estadoAsignacion->user_control   = $user_control;
 
         $estadoAsignacion->save();
@@ -139,7 +139,7 @@ class MantenedorDeEstadoAsignaciones extends Controller
 
         $estadoAsignacion = StateAssignment::find( $id );
 
-        $estadoAsignacion->name           = $name;
+        $estadoAsignacion->name           = strtoupper( $name );
         $estadoAsignacion->user_control   = $user_control;
 
         $estadoAsignacion->save();

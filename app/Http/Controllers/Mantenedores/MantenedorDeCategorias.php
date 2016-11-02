@@ -90,7 +90,7 @@ class MantenedorDeCategorias extends Controller
 
         $categoria = new Category();
 
-        $categoria->name           = $name;
+        $categoria->name           = strtoupper( $name );
         $categoria->user_control   = $user_control;
 
         $categoria->save();
@@ -161,7 +161,7 @@ class MantenedorDeCategorias extends Controller
 
         $categoria = Category::find( $id );
 
-        $categoria->name           = $name;
+        $categoria->name           = strtoupper( $name );
         $categoria->user_control   = $user_control;
 
         $categoria->save();

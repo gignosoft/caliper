@@ -100,7 +100,7 @@ class MantenedorDeEmpresas extends Controller
 
         $empresa = new Company();
 
-        $empresa->name           = $name;
+        $empresa->name           = strtoupper( $name );
         $empresa->identifier     = $identifier;
         $empresa->activity_id    = $activity_id;
 
@@ -177,7 +177,7 @@ class MantenedorDeEmpresas extends Controller
 
         $empresa = Company::find( $id );
 
-        $empresa->name           = $name;
+        $empresa->name           = strtoupper( $name );
         $empresa->identifier     = $identifier;
         $empresa->activity_id    = $activity_id;
 

@@ -90,7 +90,7 @@ class MantenedorDeEstadoActivos extends Controller
 
         $estado = new StateAsset();
 
-        $estado->name           = $name;
+        $estado->name           = strtoupper( $name );
         $estado->user_control   = $user_control;
 
         $estado->save();
@@ -160,7 +160,7 @@ class MantenedorDeEstadoActivos extends Controller
 
         $estado = StateAsset::find( $id );
 
-        $estado->name           = $name;
+        $estado->name           = strtoupper( $name );
         $estado->user_control   = $user_control;
 
         $estado->save();

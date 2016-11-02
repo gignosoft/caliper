@@ -112,8 +112,8 @@ class MantenedorDeOficinas extends Controller
 
         $oficina = new Office();
 
-        $oficina->name           = $name;
-        $oficina->description    = $description;
+        $oficina->name           = strtoupper( $name );
+        $oficina->description    = strtoupper( $description );
         $oficina->city_id        = $city_id;
 
 
@@ -189,8 +189,8 @@ class MantenedorDeOficinas extends Controller
 
         $oficina = Office::find( $id );
 
-        $oficina->name           = $name;
-        $oficina->description    = $description;
+        $oficina->name           = strtoupper( $name );
+        $oficina->description    = strtoupper( $description );
         $oficina->city_id        = $city_id;
         
         $oficina->user_control   = $user_control;

@@ -176,9 +176,9 @@ class MantenedorDeUsuarios extends Controller
 
 
         $user->identifier       = $identifier;
-        $user->first_name       = $first_name;
-        $user->last_name        = $last_name;
-        $user->email            = $email;
+        $user->first_name       = strtoupper( $first_name );
+        $user->last_name        = strtoupper( $last_name );
+        $user->email            = strtoupper( $email );
         $user->city_id          = $city_id;
         $user->user_control     = $user_control;
 
@@ -304,9 +304,9 @@ class MantenedorDeUsuarios extends Controller
 
         $user = new User();
         $user->identifier       = $identifier;
-        $user->first_name       = $first_name;
-        $user->last_name        = $last_name;
-        $user->email            = $email;
+        $user->first_name       = strtoupper( $first_name );
+        $user->last_name        = strtoupper( $last_name );
+        $user->email            = strtoupper( $email );
         $user->city_id          = $city_id;
         $user->user_control     = $user_control;
         $user->password         = $password;

@@ -88,7 +88,7 @@ class MantenedorDeRubros extends Controller
 
         $rubro = new Activity();
 
-        $rubro->name           = $name;
+        $rubro->name           = strtoupper( $name );
         $rubro->user_control   = $user_control;
 
         $rubro->save();
@@ -156,7 +156,7 @@ class MantenedorDeRubros extends Controller
 
         $rubro = Activity::find( $id );
 
-        $rubro->name           = $name;
+        $rubro->name           = strtoupper( $name );
         $rubro->user_control   = $user_control;
 
         $rubro->save();

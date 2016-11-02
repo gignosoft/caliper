@@ -120,7 +120,7 @@ class AsignarActivo extends Controller
         $asignacion = new Assignment();
 
 
-        $asignacion->description            = $description;
+        $asignacion->description            = strtoupper( $description );
         $asignacion->assigned_at            = Carbon::now();
         $asignacion->user_id                = $user_id;
         $asignacion->asset_id               = $asset_id;
@@ -173,7 +173,7 @@ class AsignarActivo extends Controller
         $activo                 = Asset::find( $asignacion->asset_id );
 
         $asignacion->state_assignment_id    = $state_assignment_id;
-        $asignacion->description            = $description;
+        $asignacion->description            = strtoupper( $description );
         $asignacion->returned_at            = Carbon::now();
 
         $activo->state_asset_id     = 2;
@@ -185,7 +185,7 @@ class AsignarActivo extends Controller
         }
         $activo->save();
 
-        $asignacion->user_control           = $request->user()->identifier;
+        $asignacion->user_control       = $request->user()->identifier;
 
         $asignacion->save();
 

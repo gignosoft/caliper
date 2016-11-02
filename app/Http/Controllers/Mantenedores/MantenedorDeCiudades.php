@@ -112,7 +112,7 @@ class MantenedorDeCiudades extends Controller
 
         $ciudad = new City();
 
-        $ciudad->name           = $name;
+        $ciudad->name           = strtoupper( $name );
         $ciudad->country_id     = $country_id;
 
         $ciudad->user_control   = $user_control;
@@ -186,7 +186,7 @@ class MantenedorDeCiudades extends Controller
 
         $ciudad = City::find( $id );
 
-        $ciudad->name           = $name;
+        $ciudad->name           = strtoupper( $name );
         $ciudad->user_control   = $user_control;
         $ciudad->country_id     = $country_id;
 

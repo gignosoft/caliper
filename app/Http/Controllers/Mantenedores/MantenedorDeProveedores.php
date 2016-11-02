@@ -127,10 +127,10 @@ class MantenedorDeProveedores extends Controller
 
         $proveedor = new Supplier();
 
-        $proveedor->name           = $name;
+        $proveedor->name           = strtoupper( $name );
         $proveedor->phone          = $phone;
-        $proveedor->email          = $email;
-        $proveedor->description    = $description;
+        $proveedor->email          = strtoupper( $email );
+        $proveedor->description    = strtoupper( $description );
         $proveedor->company_id     = $company_id;
         $proveedor->city_id        = $city_id;
 
@@ -233,10 +233,10 @@ class MantenedorDeProveedores extends Controller
 
         $proveedor = Supplier::find( $id );
 
-        $proveedor->name           = $name;
+        $proveedor->name           = strtoupper( $name );
         $proveedor->phone          = $phone;
-        $proveedor->email          = $email;
-        $proveedor->description    = $description;
+        $proveedor->email          = strtoupper( $email );
+        $proveedor->description    = strtoupper( $description );
         $proveedor->company_id     = $company_id;
         $proveedor->city_id        = $city_id;
 
