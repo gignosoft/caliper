@@ -101,6 +101,7 @@ class AsignarActivo extends Controller
         $asset_id       = $_POST['asset_id'];
         $description    = $_POST['description'];
         $user_id        = $_POST['user_id'];
+        // inicio validación
         $validator = Validator::make( $request->all(), [
             'asset_id'      => 'required',
         ], [
@@ -113,6 +114,7 @@ class AsignarActivo extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
+        // fin validación
 
         $activo                 = Asset::find($asset_id);
         $activo->available      = 1;
@@ -154,7 +156,7 @@ class AsignarActivo extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Esta función se ejecuta cuando se entrega el activo.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -176,7 +178,7 @@ class AsignarActivo extends Controller
         $asignacion->description            = strtoupper( $description );
         $asignacion->returned_at            = Carbon::now();
 
-        $activo->state_asset_id     = 2;
+        $activo->state_asset_id     = 2; // pasa el activo a usado.
         if( $state_assignment_id == 4 || $state_assignment_id == 5 ) // el estado del activo depende de la entrega
         {
             $activo->available          = 1; // disponible
