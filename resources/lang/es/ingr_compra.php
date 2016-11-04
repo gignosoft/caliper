@@ -19,7 +19,7 @@
 |
 |
 */
-// trans( 'ingr_compra.msj_ingresado_1' )
+// trans( 'ingr_compra.l_cantidad' )
 // {{ trans( 'ingr_compra.xxxxxxxxx' ) }}
 return[
     'tit_ingresar_compra'           => 'Asignar activo',
@@ -35,6 +35,7 @@ return[
     'l_nombre_activo'       => 'Nombre del Activo',
     'l_precio_activo'       => 'Precio del activo',
     'l_descripcion'         => 'Descripción',
+    'l_cantidad'            => 'Cantidad',
 
     'ph_nombre_activo'      => 'ingrese nombre activo',
     'ph_descipcion_activo'  => 'Ingrese la descripción del activo',

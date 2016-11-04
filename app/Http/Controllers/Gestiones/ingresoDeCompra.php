@@ -142,6 +142,7 @@ class ingresoDeCompra extends Controller
         $description    = $_POST['description'];
         $purchase_id    = $_POST['purchase_id'];
         $supplier_id    = $_POST['supplier_id'];
+        $cantidad       = $_POST['cantidad'];
 
         //validación
         $validator = Validator::make($request->all(), [
@@ -164,41 +165,43 @@ class ingresoDeCompra extends Controller
                 ->withInput();
         }
 
-        $code           = $this->generarCodigo(10);
+        for( $i=0; $i<$cantidad; $i++)
 
-        while( count( Asset::where('code', '=', $code)->get() ) > 0 )
         {
             $code           = $this->generarCodigo(10);
+
+            while( count( Asset::where('code', '=', $code)->get() ) > 0 )
+            {
+                $code        = $this->generarCodigo(10);
+            }
+
+            $activo = new Asset();
+
+            $precio = str_replace(".", "", $price);
+
+            $activo->name           = strtoupper( $name );
+            $activo->description    = strtoupper( $description );
+            $activo->code           = strtoupper( $code );
+            $activo->price          = str_replace(".", "", $precio);
+            $activo->supplier_id    = $supplier_id;
+            $activo->state_asset_id = 1;
+            $activo->purchase_id    = $purchase_id;
+            $activo->category_id    = $category_id;
+            $activo->available      = 0; // disponible
+
+            $activo->save();
+
+            // sumando al total >>
+            $compra         = Purchase::find( $purchase_id );
+            $total_actual   = $compra->total;
+            $compra->total  = $total_actual + ( $activo->price );
+            $compra->save();
+            // sumando al total <<
         }
-
-        $activo = new Asset();
-
-        $precio = str_replace(".", "", $price);
-
-        $activo->name           = strtoupper( $name );
-        $activo->description    = strtoupper( $description );
-        $activo->code           = strtoupper( $code );
-        $activo->price          = str_replace(".", "", $precio);
-        $activo->supplier_id    = $supplier_id;
-        $activo->state_asset_id = 1;
-        $activo->purchase_id    = $purchase_id;
-        $activo->category_id    = $category_id;
-        $activo->available      = 0; // disponible
-
-        $activo->save();
-
-        // sumando al total >>
-        $compra         = Purchase::find( $purchase_id );
-        $total_actual   = $compra->total;
-        $compra->total  = $total_actual + ( $activo->price );
-        $compra->save();
-        // sumando al total <<
 
         $mensaje    = trans( 'ingr_compra.msj_ingresado_1' ).
             $activo->name.
             trans( 'ingr_compra.msj_ingresado_2');
-
-
 
         $request->session()->flash( 'alert-success', $mensaje );
         return Redirect::to('ingresarCompra/'.$purchase_id);

@@ -50,6 +50,9 @@
                 <input type="text" class="form-control" name="asset_name" id="asset_name" value=""
                        placeholder="{{ trans( 'ingr_compra.ph_nombre_activo' ) }}"><br>
 
+                <label for="cantidad">{{ trans( 'ingr_compra.l_cantidad' ) }}</label>
+                <input type="number" value="1" min="1" max="99" name="cantidad" id="cantidad" /><br><br>
+
                 <label for="asset_price">{{ trans( 'ingr_compra.l_precio_activo' )  }}</label>
                 <input type="number" class="form-control" name="asset_price" id="asset_price" step=any value=""><br>
 
