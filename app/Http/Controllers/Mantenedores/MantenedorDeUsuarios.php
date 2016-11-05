@@ -345,7 +345,8 @@ class MantenedorDeUsuarios extends Controller
     {
 
         $usuario = User::find($id);
-        $mensaje    = trans( 'mantusuarios.msj_eliminado_1').$usuario->first_name.trans( 'mantusuarios.msj_eliminado_2');
+
+        $mensaje = sprintf( trans('mantusuarios.msj_eliminado'), $usuario->first_name );
 
         $usuario->active        = 0;
         $usuario->user_control  = $request->user()->identifier;
@@ -354,6 +355,8 @@ class MantenedorDeUsuarios extends Controller
         $usuario->save();
         $request->session()->flash('alert-success', $mensaje);
         return Redirect::to(route('listarUsuario'));
+
+
     }
 
 

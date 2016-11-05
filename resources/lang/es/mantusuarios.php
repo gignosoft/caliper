@@ -86,8 +86,8 @@ return[
 	'msj_usuario_ingresado_ok'		=> 'El usuario ha sido correctamente ingresado.',
 	'msj_usuario_actualizado_ok'	=> 'El usuario ha sido correctamente actualizado.',	
 	'msj_reset_pass_ok'				=> 'La contraseña ha sido restablecida correctamente.',	
-	'msj_eliminado_1'				=> 'El usuario: ',	
-	'msj_eliminado_2'				=> ', ha sido eliminado correctamente.',	
+
+    'msj_eliminado'				    => 'El usuario: %s , ha sido eliminado correctamente.',
 		
 	'jal_confirm_elmnar_user'		=> 'Se eliminará el usuario: ',
 		
