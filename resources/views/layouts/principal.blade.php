@@ -1,6 +1,7 @@
 @include('layouts.partes.header')
 @include('layouts.partes.nav')
 
+
 <div class="row" >
     <div class="col-xs-3" >
 

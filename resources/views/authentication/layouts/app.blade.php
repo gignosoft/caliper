@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="{{ url('css/app.css') }}" type="text/css" media="all" />
 <!-- Fonts -->
     <link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+    <script src="{{ url("js/jquery-3.1.0.min.js") }}"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -26,11 +28,18 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Caliper logo </a>
+            <a class="navbar-brand" href="{{ url('/') }}"> <img src={{ url("img/CALIPER_150X37.gif") }} alt=""></a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="/">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Lenguaje <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ url('lang', ['en']) }}">En</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{{ url('lang', ['es']) }}">Es</a></li>
+                    </ul>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::guest())
@@ -47,8 +56,7 @@
     </div>
 </nav>
 
-<li><a href="{{ url('lang', ['en']) }}">En</a></li>
-<li><a href="{{ url('lang', ['es']) }}">Es</a></li>
+
 
 <div class="container">
     @if (Session::has('errors'))

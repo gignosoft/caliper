@@ -22,10 +22,6 @@
                                 <input class="form-control" type="password" name="password" id="password">
                             </div>
 
-                            <div class="checkbox">
-                                <label><input name="remember" type="checkbox"> {{ trans('auth.recordar') }}</label>
-                            </div>
-
                             <input class="btn btn-primary" type="submit" value="{{ trans('auth.boton_login') }}">
 
                         </form>
