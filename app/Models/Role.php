@@ -15,7 +15,12 @@ class Role extends Model
     public function users()
     {
           return $this->belongsToMany(User::class, 'user_roles', 'role_id', 'user_id');
-        //return $this->belongsToMany(Role::class, 'user_roles', 'user_id', 'role_id');
+    }
+
+    // |roles| >-< |menus| ( importante que el role_id acá esté primero ya que es la clase Role)
+    public function menus()
+    {
+        return $this->belongsToMany( Menus::class, 'menu_roles', 'role_id', 'menu_id' );
     }
 
 }
