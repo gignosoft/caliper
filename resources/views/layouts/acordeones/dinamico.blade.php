@@ -55,14 +55,16 @@ $menus      = $roles->menus;
                                     <div id="{{ $sub_menu->body }}" class="panel-collapse collapse">
                                         <div class="panel-body">
 
-                                            <ul>
-                                                <li>
-                                                    <a href="{{ route('listarUsuario') }}">
-                                                        Mantenedor de usuarios
+                                            @foreach( $sub_menu->micro_menus  as $micro_menu)
+                                                <div class="panel panel-default">
+                                                    <a  data-parent="#_accordion_{{ $micro_menu->name }}" href="{{ url( $micro_menu->ruta ) }}">
+                                                        <div class="panel-heading">
+                                                            <h4 class="panel-title"> {{ $micro_menu->name }} </h4>
+                                                        </div>
                                                     </a>
-                                                </li>
+                                                </div>
+                                            @endforeach
 
-                                            </ul>
                                         </div>
                                     </div>
                                 @endif

@@ -12,34 +12,45 @@ class SubmenusTableSeeder extends Seeder
      */
     public function run()
     {
-        // dato uno
-
+        // USUARIOS
         $sub_menu = new Sub_menu();
 
-        $sub_menu->name     = 'sub_menu_con_ruta';
-        $sub_menu->ruta     = 'listarUsuario';
-        $sub_menu->body     = '';
-        $sub_menu->sub      = 1;// 1 = false
-        $sub_menu->menu_id  = 1;
-
-        $sub_menu->user_control  = 'seeder';
-
-
-        $sub_menu->save();
-        // dato dos
-
-        $sub_menu = new Sub_menu();
-
-        $sub_menu->name     = 'sub_menu_con_menu_dentro';
+        $sub_menu->name     = 'USUARIOS';
         $sub_menu->ruta     = '';
-        $sub_menu->body     = 'sub_menu_1';
+        $sub_menu->body     = 'USUARIOS';
         $sub_menu->sub      = 0;// 0 = true
         $sub_menu->menu_id  = 1;
-
         $sub_menu->user_control  = 'seeder';
 
 
         $sub_menu->save();
+
+        // ACTIVOS
+        $sub_menu = new Sub_menu();
+
+        $sub_menu->name     = 'ACTIVOS';
+        $sub_menu->ruta     = '';
+        $sub_menu->body     = 'ACTIVOS';
+        $sub_menu->sub      = 0;// 0 = true
+        $sub_menu->menu_id  = 1;
+        $sub_menu->user_control  = 'seeder';
+
+
+        $sub_menu->save();
+
+        // OTROS
+        $sub_menu = new Sub_menu();
+
+        $sub_menu->name     = 'OTROS';
+        $sub_menu->ruta     = '';
+        $sub_menu->body     = 'OTROS';
+        $sub_menu->sub      = 0;// 0 = true
+        $sub_menu->menu_id  = 1;
+        $sub_menu->user_control  = 'seeder';
+
+
+        $sub_menu->save();
+
 
 
 

@@ -15,8 +15,8 @@ class MenusTableSeeder extends Seeder
         //Primer menú
         $menu = new Menus();
 
-        $menu->name     = 'menu_prueba_1';
-        $menu->body     = 'menu_prueba_1';
+        $menu->name     = 'MANTENEDORES';
+        $menu->body     = 'MANTENEDORES';
 
         $menu->user_control   = 'seeder';
 
@@ -26,15 +26,13 @@ class MenusTableSeeder extends Seeder
         //segundo menú
         $menu = new Menus();
 
-        $menu->name     = 'menu_prueba_2';
-        $menu->body     = 'menu_prueba_2';
+        $menu->name     = 'GESTIONES';
+        $menu->body     = 'GESTIONES';
 
         $menu->user_control   = 'seeder';
 
         $menu->save();
         $menu->roles()->attach([1]);
-
-
 
     }
 }

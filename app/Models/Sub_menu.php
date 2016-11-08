@@ -17,4 +17,13 @@ class Sub_menu extends Model
         return $this->belongsTo(Menus::class, 'menu_id', 'id');
     }
 
+
+    /**
+     * @return array
+     */
+    public function micro_menus()
+    {
+        return $this->hasMany( Micro_menu::class, 'sub_menu_id', 'id' );
+    }
+
 }

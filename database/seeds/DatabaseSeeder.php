@@ -61,8 +61,10 @@ class DatabaseSeeder extends Seeder
 
         $this->call(OfficesTableSeeder::class);
 
+        /*  seccion que se encarga de generar los menus*/
         $this->call(MenusTableSeeder::class);
         $this->call(SubmenusTableSeeder::class);
+        $this->call(MicroMenusTableSeeder::class);
 
 
 
