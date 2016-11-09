@@ -24,6 +24,7 @@
                 </div>
                 <div id="collapse1" class="panel-collapse collapse in">
                     <div class="panel-body">
+
                         <!-- INICIO DEL CUERPO DEL GRUPO 1 -->
 
                         <!-- LABEL E INPUT TEXT -->
@@ -34,6 +35,18 @@
                         </div>
 
                         <!-- FIN DEL CUERPO DEL GRUPO 1 -->
+
+                        <!--inicio Roles-->
+                         <div class="row">
+                            @foreach($roles as $rol)
+                                 <div class=" col-xs-6 ">
+                                    <input type="checkbox" name="roles[]" id="{{ $rol->id }}" value="{{ $rol->id }}">{{ ' '.$rol->name }}
+                                 </div>
+                             @endforeach
+                         </div>
+
+                        <!--fin Roles-->
+
                     </div>
                 </div>
             </div>

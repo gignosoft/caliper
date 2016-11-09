@@ -7,10 +7,7 @@
 <div class="row" >
     <div class="col-xs-3" >
 
-        @include('layouts.acordeones.mantenedores')
-        @include('layouts.acordeones.gestiones')
         @include('layouts.acordeones.dinamico')
-
 
     </div>
 

@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Role;
+use App\Models\Menus;
+
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 class MantenedorDeRoles extends Controller
@@ -41,6 +43,7 @@ class MantenedorDeRoles extends Controller
      */
     public function create()
     {
+
         return view('mantenedores.roles.insertar');
     }
     /**

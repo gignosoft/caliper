@@ -5,6 +5,22 @@ use App\Models\Sub_menu;
 
 class SubmenusTableSeeder extends Seeder
 {
+
+
+    private function crearSubMenu( $name, $ruta, $body, $sub, $menu_id  )
+
+    {
+        $sub_menu = new Sub_menu();
+
+        $sub_menu->name     = $name;
+        $sub_menu->ruta     = $ruta;
+        $sub_menu->body     = $body;
+        $sub_menu->sub      = $sub;// 0 = true 1 = true
+        $sub_menu->menu_id  = $menu_id;
+        $sub_menu->user_control  = 'seeder';
+        $sub_menu->save();
+    }
+
     /**
      * Run the database seeds.
      *
@@ -12,50 +28,15 @@ class SubmenusTableSeeder extends Seeder
      */
     public function run()
     {
-        // USUARIOS
-        $sub_menu = new Sub_menu();
+        // sub menus de mantenedores
+        $this->crearSubMenu( 'USUARIOS', '', 'USUARIOS', 0, 1 );
+        $this->crearSubMenu( 'ACTIVOS', '', 'ACTIVOS', 0, 1 );
+        $this->crearSubMenu( 'OTROS', '', 'OTROS', 0, 1 );
 
-        $sub_menu->name     = 'USUARIOS';
-        $sub_menu->ruta     = '';
-        $sub_menu->body     = 'USUARIOS';
-        $sub_menu->sub      = 0;// 0 = true
-        $sub_menu->menu_id  = 1;
-        $sub_menu->user_control  = 'seeder';
+        // sub menus de gestiones
 
-
-        $sub_menu->save();
-
-        // ACTIVOS
-        $sub_menu = new Sub_menu();
-
-        $sub_menu->name     = 'ACTIVOS';
-        $sub_menu->ruta     = '';
-        $sub_menu->body     = 'ACTIVOS';
-        $sub_menu->sub      = 0;// 0 = true
-        $sub_menu->menu_id  = 1;
-        $sub_menu->user_control  = 'seeder';
-
-
-        $sub_menu->save();
-
-        // OTROS
-        $sub_menu = new Sub_menu();
-
-        $sub_menu->name     = 'OTROS';
-        $sub_menu->ruta     = '';
-        $sub_menu->body     = 'OTROS';
-        $sub_menu->sub      = 0;// 0 = true
-        $sub_menu->menu_id  = 1;
-        $sub_menu->user_control  = 'seeder';
-
-
-        $sub_menu->save();
-
-
-
-
-
-
+        $this->crearSubMenu( 'Asignar activo', 'asignarActivo', '', 1, 2 );
+        $this->crearSubMenu( 'Ingreso de compra', 'ingresarCompra/1', '', 1, 2 );
 
     }
 }
