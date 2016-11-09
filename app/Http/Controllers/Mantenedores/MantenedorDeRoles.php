@@ -5,6 +5,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Models\Menus;
+use App\Pivots\MenuRol;
 
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
@@ -44,7 +45,10 @@ class MantenedorDeRoles extends Controller
     public function create()
     {
 
-        return view('mantenedores.roles.insertar');
+        $menus = Menus::all();
+        return view('mantenedores.roles.insertar', [
+            'menus' => $menus,
+        ]);
     }
     /**
      * Store a newly created resource in storage.
@@ -55,6 +59,8 @@ class MantenedorDeRoles extends Controller
     public function store(Request $request)
     {
         $name           = $_POST['name'];
+        $menus          = $_POST['menus'];
+
         $user_control   = $request->user()->identifier;
         $validator = Validator::make($request->all(), [
             'name'                  => 'required',
@@ -71,6 +77,9 @@ class MantenedorDeRoles extends Controller
         $rol->name           = strtoupper( $name );
         $rol->user_control   = $user_control;
         $rol->save();
+        $rol->menus()->attach($menus);
+
+
         $request->session()->flash('alert-success', trans('mant_roles.msj_ingresado'));
         return Redirect::to('insertarRol');
     }
@@ -95,9 +104,12 @@ class MantenedorDeRoles extends Controller
      */
     public function edit($id)
     {
-        $rol = Role::find($id);
+        $rol    = Role::find($id);
+        $menus  = Menus::all();
+
         return view('mantenedores.roles.actualizar', [
-            'rol'   => $rol,
+            'rol'      => $rol,
+            'menus'    => $menus,
         ]);
     }
     /**
@@ -111,6 +123,12 @@ class MantenedorDeRoles extends Controller
     {
         $name           = $_POST['name'];
         $id             = $_POST['id'];
+
+        if( isset($_POST['menus']) )
+        {
+            $menus          = $_POST['menus'];
+        }
+
         $user_control   = $request->user()->identifier;
         $validator = Validator::make($request->all(), [
             'name'                  => 'required',
@@ -123,7 +141,16 @@ class MantenedorDeRoles extends Controller
                 ->withInput();
         }
         // fin validaciones
+
+
         $rol = Role::find( $id );
+
+        MenuRol::where('role_id', $rol->id)->delete();
+        if( isset($menus) )
+        {
+            $rol->menus()->attach($menus);
+        }
+
         $rol->name           = strtoupper( $name );
         $rol->user_control   = $user_control;
         $rol->save();

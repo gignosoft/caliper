@@ -34,6 +34,26 @@
                         </div>
 
                         <!-- FIN DEL CUERPO DEL GRUPO 1 -->
+
+                        <!--inicio menus-->
+                        <div class="form-group col-sm-12 col-xs-12 pegado-izquierda">
+                            <label for="menus">{{ trans('Acceso a menus') }}</label>
+                            <div class="row">
+                                @foreach($menus as $menu)
+                                    <div class=" col-xs-6 ">
+
+                                        @if( isset( $menu->roles->find($rol->id)->id ) )
+                                            <input type="checkbox" name="menus[]" id="{{ $menu->id }}" value="{{ $menu->id }}" checked>{{ ' '.$menu->name }}
+                                        @else
+                                            <input type="checkbox" name="menus[]" id="{{ $menu->id }}" value="{{ $menu->id }}">{{ ' '.$menu->name }}
+                                        @endif
+
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        <!--fin menus-->
+
                     </div>
                 </div>
             </div>

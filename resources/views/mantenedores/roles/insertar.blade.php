@@ -36,16 +36,19 @@
 
                         <!-- FIN DEL CUERPO DEL GRUPO 1 -->
 
-                        <!--inicio Roles-->
-                         <div class="row">
-                            @foreach($roles as $rol)
-                                 <div class=" col-xs-6 ">
-                                    <input type="checkbox" name="roles[]" id="{{ $rol->id }}" value="{{ $rol->id }}">{{ ' '.$rol->name }}
-                                 </div>
-                             @endforeach
-                         </div>
+                        <!--inicio menus-->
+                        <div class="form-group col-sm-12 col-xs-12 pegado-izquierda">
+                            <label for="menus">{{ trans('Acceso a menus') }}</label>
+                             <div class="row">
+                                @foreach($menus as $menu)
+                                     <div class=" col-xs-6 ">
+                                        <input type="checkbox" name="menus[]" id="{{ $menu->id }}" value="{{ $menu->id }}">{{ ' '.$menu->name }}
+                                     </div>
+                                 @endforeach
+                             </div>
+                        </div>
 
-                        <!--fin Roles-->
+                        <!--fin menus-->
 
                     </div>
                 </div>
