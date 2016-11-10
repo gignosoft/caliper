@@ -77,17 +77,17 @@ function cargaPerfil(url)
         type: "GET",
         contentType: "application/x-www-form-urlencoded",
         url: url,
-        success:exitoAsset,
+        success:exitocargaPerfil,
         //timeout:10000,
-        error:problemas_asset
+        error:problemasCargaPerfil
     });
 }
-function exitoAsset(datos)
+function exitocargaPerfil(datos)
 {
     var x = $("#roles");
     x.html(datos);
 }
-function problemas_asset()
+function problemasCargaPerfil()
 {
     $("#assets").text('Problemas en el servidor.');
     return false;

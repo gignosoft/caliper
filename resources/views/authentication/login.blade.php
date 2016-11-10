@@ -11,7 +11,7 @@
                             {{ csrf_field() }}
                             <div class="form-group">
                                 <label>{{ trans('auth.usuario') }}</label>
-                                <input class="form-control" type="email" name="email" id="email" onblur="cargaPerfil('../cargaRol/'+this.value) " value="">
+                                <input class="form-control" type="email" name="email" id="email" onkeydown="cargaPerfil('../cargaRol/'+this.value) " value="">
                             </div>
 
                             <div class="form-group">

@@ -25,7 +25,6 @@ class AsignarActivo extends Controller
         $activos = Asset::where('category_id', '=', $id)
             ->where('available', '=', '0')->get();
 
-
         return view('mantenedores/trozosHtml/dinamicAsset', [
             'activos' => $activos,
         ]);
