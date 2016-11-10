@@ -2,7 +2,9 @@
 
 use App\Models\Role;
 
-$roles      = Role::find(1);
+$rol_id = Session::get('rol_usuario');
+
+$roles      = Role::find( $rol_id );
 $menus      = $roles->menus;
 
 ?>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Sistema;
 
 use Illuminate\Http\Request;
 
+use App\Models\User;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -18,6 +20,33 @@ class HomeController extends Controller
     {
         //
 
+    }
+
+
+    public function cargaRol( $correo )
+    {
+        $users = User::where( 'email', '=', $correo )->get();
+
+        foreach ( $users as $user )
+        {
+            $roles = $user->roles;
+        }
+
+
+        $select_1 = "<label for=\"country_id\">Rol</label>";
+        $select_2 = "<select class='form-control'  name='rol_id' id='rol_id' >";
+        $select_3 = '';
+
+        foreach ( $roles as $rol )
+        {
+            $select_3 = $select_3.''."<option value='$rol->id'>$rol->name</option>";
+        }
+
+        $select_4 = "</select>";
+
+        $select = $select_1.$select_2.$select_3.$select_4;
+
+        return $select;
     }
 
     /**

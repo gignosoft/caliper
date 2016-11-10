@@ -4,12 +4,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laravel</title>
+    <title>Netcaliper - login </title>
 
-    <link rel="stylesheet" href="{{ url('css/app.css') }}" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ url('css/app.css') }}">
 <!-- Fonts -->
     <link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
     <script src="{{ url("js/jquery-3.1.0.min.js") }}"></script>
+    <script src="{{ url("js/funciones_1.js") }}"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -17,8 +18,23 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <style >
+        .body{
+            background-repeat: no-repeat;
+            background-position: center;
+            background-image: url(../img/fondoLogin_1240x803.png);
+            background-attachment: fixed;
+            background-size: 100%;
+        }
+
+        .elemento {
+            box-shadow: 20px 20px 50px #999;
+        }
+    </style>
+
 </head>
-<body>
+<body class="body">
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -28,7 +44,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ url('/') }}"> <img src={{ url("img/CALIPER_150X37.gif") }} alt=""></a>
+            <a class="navbar-brand" href="{{ url('/') }}"> <img src={{ url("img/CALIPER_150X37.png") }} alt=""></a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
@@ -70,7 +86,11 @@
         </div>
     @endif
 </div>
-@yield('content')
+
+
+    @yield('content')
+
+
 <!-- Scripts -->
 </body>
 </html>

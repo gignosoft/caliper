@@ -24,7 +24,9 @@ Route::group(['middleware' => ['web']], function () {
 // Registration routes...
     Route::get('auth/register', 'Auth\AuthController@getRegister');
     Route::post('auth/register', ['as' => 'auth/register', 'uses' => 'Auth\AuthController@postRegister']);
-
+// Carga de perfil
+    Route::get('cargaRol/{correo}', 'Sistema\HomeController@cargaRol');
+    
     /*******************************/
 
     Route::get('lang/{lang}', function ($lang) {
