@@ -19,6 +19,15 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <script type="application/javascript">
+
+        function cargaRolInicio(){
+            var mail = document.getElementById("email").value;
+            cargaPerfil('../cargaRol/'+mail)
+        }
+
+    </script>
+
     <style >
         .body{
             background-repeat: no-repeat;
@@ -34,7 +43,7 @@
     </style>
 
 </head>
-<body class="body">
+<body class="body" onload="cargaRolInicio()">
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">

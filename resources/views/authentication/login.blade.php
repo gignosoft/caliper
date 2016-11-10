@@ -7,11 +7,11 @@
                 <div class="panel panel-default elemento">
                     <div class="panel-heading">{{ trans('auth.login') }}</div>
                     <div class="panel-body">
-                        <form class="form" action="{{ route('auth/login') }}" method="post">
+                        <form name="MyForm" class="form" action="{{ route('auth/login') }}" method="post">
                             {{ csrf_field() }}
                             <div class="form-group">
                                 <label>{{ trans('auth.usuario') }}</label>
-                                <input class="form-control" type="email" name="email" id="email" onblur="cargaPerfil('../cargaRol/'+this.value)">
+                                <input class="form-control" type="email" name="email" id="email" onblur="cargaPerfil('../cargaRol/'+this.value) " value="">
                             </div>
 
                             <div class="form-group">
@@ -19,7 +19,7 @@
                             </div>
 
                             <div class="form-group">
-                                <input class="form-control" type="password" name="password" id="password">
+                                <input class="form-control" type="password" name="password" id="password" value="">
                             </div>
 
                             <div class="form-group">
