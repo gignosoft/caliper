@@ -39,8 +39,9 @@
     </head>
     <body>
         <div class="container">
-            <div class="content">
-                <div class="title">Be right back.</div>
+            <div class="content">		
+		  <img src="https://mikesivier.files.wordpress.com/2013/02/nofuture.jpg"> 	 
+                <div class="title">Cerrado por abandono, 16 usd a la basura .</div>
             </div>
         </div>
     </body>
